@@ -1,0 +1,192 @@
+You are a senior Full Stack Architect + DevOps Engineer.
+
+Objective:
+Migrate https://dsrc.com into a fully static Next.js (TypeScript) application
+integrated with TinaCMS (filesystem mode only), with controlled deployment
+via Jenkins to AWS S3 + CloudFront.
+
+=========================================================
+PHASE 1 — WEBSITE MIGRATION (dsrc.com → Next.js)
+=========================================================
+
+1. Crawl and analyze all pages of https://dsrc.com
+2. Extract:
+   - Navigation structure
+   - Header & footer
+   - All static pages
+   - Hero sections
+   - Services sections
+   - About content
+   - Contact forms
+   - Images and media
+   - SEO metadata (title, description)
+   - Structured repeating sections
+
+3. Convert the site into reusable Next.js components:
+
+   Components must include:
+   - HeroSection
+   - ContentSection (Rich text)
+   - ServicesGrid
+   - CTASection
+   - TestimonialsSection (if exists)
+   - ContactSection
+   - Footer
+   - Navbar
+
+4. Use:
+   - Next.js (App Router)
+   - TypeScript
+   - TailwindCSS
+   - Static Site Generation (SSG)
+   - next export compatible build
+
+5. All content must be dynamic (no hardcoded text).
+
+=========================================================
+PHASE 2 — TINACMS INTEGRATION (Filesystem Mode)
+=========================================================
+
+1. Integrate TinaCMS in filesystem mode only.
+2. Content must be stored as:
+   /content/pages/*.json
+   /content/global/*.json
+
+3. Define Tina schema:
+
+   Collection: pages
+   Fields:
+     - title (string)
+     - slug (string)
+     - seo_title (string)
+     - seo_description (string)
+     - sections (object list)
+
+   Section Types:
+     - hero
+     - rich_text
+     - services_grid
+     - cta_section
+     - image_block
+
+4. Navbar and Footer must be editable via global.json.
+
+5. Tina must:
+   - Save content locally only.
+   - NOT auto-commit.
+   - NOT auto-deploy.
+
+=========================================================
+PHASE 3 — DEPLOY WORKFLOW DESIGN
+=========================================================
+
+Deployment must be controlled and explicit.
+
+Rules:
+- Save ≠ Commit
+- Commit ≠ Deploy
+- Deploy = Explicit Button Action
+
+Create a custom "Deploy to Production" button inside Tina UI.
+
+When clicked:
+  1. Confirm action
+  2. Create lock file (/tmp/deploy.lock)
+  3. Execute:
+       git add .
+       git commit -m "Content publish - timestamp"
+       git pull --rebase origin main
+       git push origin main
+  4. Remove lock
+  5. Trigger Jenkins (via webhook or GitHub push)
+
+If:
+  - Rebase fails → abort deploy
+  - Working tree dirty → abort
+  - Lock exists → block deploy
+
+=========================================================
+PHASE 4 — JENKINS PIPELINE
+=========================================================
+
+Jenkins must:
+
+1. Pull latest main branch.
+2. Run:
+     npm install
+     npm run build
+     npm run export
+3. Deploy:
+     aws s3 sync out/ s3://BUCKET --delete
+4. Invalidate:
+     aws cloudfront create-invalidation --distribution-id DIST_ID --paths "/*"
+
+Important:
+- Jenkins must pull only.
+- Jenkins must not push commits.
+- Git credentials must be secured.
+
+=========================================================
+PHASE 5 — PRODUCTION REQUIREMENTS
+=========================================================
+
+Frontend:
+- Fully static
+- next export compatible
+- No runtime backend
+- No API routes required
+
+Security:
+- Deploy button restricted to authenticated users
+- No Git credentials exposed in browser
+- Jenkins token secured
+- Lock mechanism prevents concurrent deploys
+
+Branch Strategy:
+- main = production
+- Optionally support draft branch later
+
+=========================================================
+OUTPUT REQUIRED
+=========================================================
+
+Provide:
+
+1. Folder structure
+2. Next.js project scaffold
+3. Tina config
+4. Content folder examples
+5. Deploy shell script
+6. Jenkins pipeline file
+7. AWS deployment instructions
+8. Flow diagram of full architecture
+9. Security checklist
+10. Failure handling strategy
+
+=========================================================
+ARCHITECTURE OVERVIEW
+=========================================================
+
+Editor → Tina UI (filesystem mode)
+        ↓
+Save locally
+        ↓
+Click Deploy
+        ↓
+Git commit + push
+        ↓
+Jenkins builds
+        ↓
+S3 deployment
+        ↓
+CloudFront invalidation
+
+Ensure clean separation between:
+- Content editing
+- Version control
+- CI/CD
+- Static hosting
+
+All code must be production-ready and type-safe.
+
+First convert home and any other page, we can proceed with other pages once current page is good

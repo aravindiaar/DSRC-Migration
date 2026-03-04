@@ -6,8 +6,15 @@ import { Link } from "wouter";
 import {
   ArrowRight, CheckCircle, Target, Users, Infinity, Settings, Scale,
   Globe, Shield, Layers, Cloud, Cpu, BarChart3, Cog, Glasses,
-  Lightbulb, Zap, CircleDot, RefreshCw, ArrowRightCircle
+  Lightbulb, Zap, CircleDot, RefreshCw, ArrowRightCircle,
+  Briefcase, ThumbsUp, Star
 } from "lucide-react";
+
+const insightIcons: Record<string, any> = {
+  "briefcase": Briefcase,
+  "thumbs-up": ThumbsUp,
+  "star": Star,
+};
 
 interface ServiceDetailProps {
   slug: string;
@@ -86,14 +93,28 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.overview && (
-        <section className="py-14 bg-white">
+        <section className="py-14 bg-[#f0f4fa]">
           <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
             {page.overview.heading && (
-              <h2 className="text-xl lg:text-2xl font-bold text-[#0033a0] mb-6">{page.overview.heading}</h2>
+              <h2 className="text-lg lg:text-xl font-bold text-[#0033a0] mb-6 tracking-wide uppercase">{page.overview.heading}</h2>
             )}
-            {page.overview.paragraphs?.map((p: string, idx: number) => (
-              <p key={idx} className="text-[14px] text-gray-600 leading-[1.8] mb-4">{p}</p>
-            ))}
+            {page.overview.paragraphs?.map((p: any, idx: number) => {
+              if (typeof p === "string") {
+                return <p key={idx} className="text-[14px] text-gray-600 leading-[1.8] mb-4">{p}</p>;
+              }
+              if (p.segments) {
+                return (
+                  <p key={idx} className="text-[14px] text-gray-600 leading-[1.8] mb-4">
+                    {p.segments.map((seg: any, si: number) =>
+                      seg.bold
+                        ? <strong key={si} className="font-semibold text-gray-800">{seg.text}</strong>
+                        : <span key={si}>{seg.text}</span>
+                    )}
+                  </p>
+                );
+              }
+              return null;
+            })}
           </div>
         </section>
       )}
@@ -209,13 +230,22 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.expertise && (
-        <section className="py-14 bg-[#f5f5f5]">
+        <section className="py-14 bg-white">
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-xl lg:text-2xl font-bold text-[#0033a0] mb-10">{page.expertise.title}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <h2 className="text-center text-xl lg:text-2xl font-bold text-[#0033a0] mb-10 tracking-wide uppercase">{page.expertise.title}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {page.expertise.items.map((item: any, idx: number) => (
-                <div key={idx} data-testid={`expertise-${idx}`} className="bg-white rounded-lg shadow-md p-5 border border-gray-100 hover:shadow-lg transition-shadow">
-                  <h3 className="text-sm font-bold text-[#0033a0] mb-2">{item.title}</h3>
+                <div key={idx} data-testid={`expertise-${idx}`} className="group">
+                  {item.image && (
+                    <div className="w-full h-[160px] overflow-hidden mb-4 rounded-sm">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  )}
+                  <h3 className="text-[14px] font-bold text-[#0033a0] mb-2">{item.title}</h3>
                   <p className="text-[13px] text-gray-500 leading-relaxed">{item.description}</p>
                 </div>
               ))}
@@ -427,16 +457,34 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.insights && (
-        <section className="py-14 bg-white">
+        <section className="py-16 bg-[#f0f4fa]">
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-xl lg:text-2xl font-bold text-[#0033a0] mb-10">{page.insights.title}</h2>
+            <h2 className="text-center text-xl lg:text-2xl font-bold text-[#0033a0] mb-10 tracking-wide uppercase">{page.insights.title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {page.insights.items.map((insight: any, idx: number) => (
-                <div key={idx} data-testid={`insight-${idx}`} className="bg-[#f5f5f5] rounded-lg p-6 text-center">
-                  <h3 className="text-sm font-bold text-[#0033a0] mb-3">{insight.title}</h3>
-                  <p className="text-[13px] text-gray-500 leading-relaxed">{insight.description}</p>
-                </div>
-              ))}
+              {page.insights.items.map((insight: any, idx: number) => {
+                const Icon = insight.icon ? (insightIcons[insight.icon] || Briefcase) : null;
+                return (
+                  <div key={idx} data-testid={`insight-${idx}`} className="bg-white border border-gray-200 rounded-sm p-8 text-center flex flex-col">
+                    {Icon && (
+                      <div className="mb-5">
+                        <Icon className="w-10 h-10 text-[#0033a0] mx-auto" />
+                      </div>
+                    )}
+                    <h3 className="text-[15px] font-bold text-[#0033a0] mb-4">{insight.title}</h3>
+                    <p className="text-[13px] text-gray-500 leading-relaxed flex-1">{insight.description}</p>
+                    {insight.link && (
+                      <div className="mt-6 pt-4 border-t border-gray-100">
+                        <Link href={insight.link.href}>
+                          <span data-testid={`link-insight-${idx}`} className="inline-flex items-center gap-2 text-[#0033a0] text-[13px] font-medium cursor-pointer hover:underline">
+                            <ArrowRightCircle className="w-4 h-4" />
+                            {insight.link.label}
+                          </span>
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

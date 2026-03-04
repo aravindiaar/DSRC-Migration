@@ -11,37 +11,111 @@
   },
   "ctaVariant": "white",
   "overview": {
-    "heading": "Your full-service, Enterprise Application Services Partner!",
+    "heading": "YOUR FULL-SERVICE, ENTERPRISE APPLICATION SERVICES PARTNER!",
+    "lines": [
+      {
+        "text": "At DSRC, we help enterprises and mid-sized businesses build and customize enterprise applications to drive efficiency, scalability, and digital transformation. Our ",
+        "bold": "",
+        "after": "Enterprise Application Services",
+        "afterBold": true,
+        "rest": " are designed to extend the life and value of existing systems while ensuring they evolve in step with business needs."
+      }
+    ],
     "paragraphs": [
-      "At DSRC, we help enterprises and mid-sized businesses build and customize enterprise applications to drive efficiency, scalability, and digital transformation. Our Enterprise Application Services are designed to extend the life and value of existing systems while ensuring they evolve in step with business needs.",
-      "From custom enterprise applications, ERP/CRM extensions, and legacy platform modernization to system integrations, cloud migration, and ongoing support, we provide comprehensive services that enhance performance and reduce operational risk.",
-      "With 50+ years of engineering excellence, we partner with organizations to transform complex legacy systems into agile, future-ready solutions — empowering teams to operate smarter, faster, and with greater resilience."
+      {
+        "segments": [
+          { "text": "At DSRC, we help enterprises and mid-sized businesses build and customize enterprise applications to drive efficiency, scalability, and digital transformation. Our ", "bold": false },
+          { "text": "Enterprise Application Services", "bold": true },
+          { "text": " are designed to extend the life and value of existing systems while ensuring they evolve in step with business needs.", "bold": false }
+        ]
+      },
+      {
+        "segments": [
+          { "text": "From ", "bold": false },
+          { "text": "custom enterprise applications, ERP/CRM extensions, and legacy platform modernization", "bold": true },
+          { "text": " to ", "bold": false },
+          { "text": "system integrations, cloud migration, and ongoing support", "bold": true },
+          { "text": ", we provide comprehensive services that enhance performance and reduce operational risk.", "bold": false }
+        ]
+      },
+      {
+        "segments": [
+          { "text": "With 50+ years of engineering excellence, we partner with organizations to transform complex legacy systems into agile, future-ready solutions—empowering teams to operate smarter, faster, and with greater resilience.", "bold": false }
+        ]
+      }
     ]
   },
   "expertise": {
-    "title": "Expertise & Capabilities",
+    "title": "EXPERTISE & CAPABILITIES",
     "items": [
-      { "title": "Web Application Development", "description": "Accelerate innovation & growth, delivering next generation applications!" },
-      { "title": "Mobile App Development", "description": "We can help you build native and truly cross-platform enterprise B2B and B2C mobile applications and mobility solutions." },
-      { "title": "Application Modernization", "description": "Reimagine, Rearchitect and Modernize legacy software systems transforming them into a modern software system with scalable performance and usability." },
-      { "title": "Support & Maintenance", "description": "Next-gen, application support and maintenance services to manage product roadmap, bug and issue management, and support." },
-      { "title": "DevOps", "description": "Build software faster and deploy them rapidly, and securely by employing proven DevOps plan, strategy and frameworks." },
-      { "title": "Digital API Services", "description": "Design, develop and manage APIs that connect applications, data and services across the enterprise ecosystem." },
-      { "title": "UI/UX Development", "description": "Vast front-end development experience implementing interactive and visual design principles for a positive and cohesive user experience." },
-      { "title": "SQA & Test Automation", "description": "Comprehensive quality assurance and test automation services to ensure reliable, high-performing applications." }
+      {
+        "title": "Web Application Development",
+        "description": "Accelerate innovation & growth, delivering next generation applications!",
+        "image": "/images/app-web-dev.jpg"
+      },
+      {
+        "title": "Mobile App Development",
+        "description": "Native Apps or Hybrid Apps? We can help you build native and truly cross-platform enterprise B2B and B2C mobile applications and mobility solutions.",
+        "image": "/images/app-mobile-dev.jpg"
+      },
+      {
+        "title": "Application Modernization",
+        "description": "Reimagine, Rearchitect and Modernize legacy software systems transforming them into a modern software system with scalable performance and usability.",
+        "image": "/images/app-modernization.jpg"
+      },
+      {
+        "title": "Support & Maintenance",
+        "description": "Next-gen, application support and maintenance services to manage product roadmap, bug and issue management, and support.",
+        "image": "/images/app-support.jpg"
+      },
+      {
+        "title": "DevOps",
+        "description": "Build software faster and deploy them rapidly, and securely by employing proven DevOps plan, strategy and frameworks.",
+        "image": "/images/app-devops.jpg"
+      },
+      {
+        "title": "Digital API Services",
+        "description": "Design, develop and manage APIs that connect applications, data and services across the enterprise ecosystem.",
+        "image": "/images/app-api.jpg"
+      },
+      {
+        "title": "UI/UX Development",
+        "description": "Vast front-end development experience implementing interactive and visual design principles for a positive and cohesive user experience.",
+        "image": "/images/app-uiux.jpg"
+      },
+      {
+        "title": "SQA & Test Automation",
+        "description": "Comprehensive quality assurance and test automation services to ensure reliable, high-performing applications.",
+        "image": "/images/app-sqa.jpg"
+      }
     ]
   },
   "insights": {
-    "title": "Insights",
+    "title": "INSIGHTS",
     "items": [
-      { "title": "Engagement Models", "description": "Experience seamless collaboration, accelerated innovation and intensive control on software development projects using flexible engagement models!" },
-      { "title": "Technology Expertise", "description": "DSRC brings front-end, back-end and full-stack technology expertise and capabilities across a wide variety of technologies, platforms and skill-sets." },
-      { "title": "Industry Experience", "description": "Delivering custom software solutions across diverse industry verticals, seamlessly integrating technology expertise with our domain experience, driving innovation and transformation." }
+      {
+        "title": "Engagement Models",
+        "description": "Experience seamless collaboration, accelerated innovation and intensive control on software development projects using flexible engagement models!",
+        "icon": "briefcase",
+        "link": { "label": "Learn More", "href": "/contact" }
+      },
+      {
+        "title": "Technology Expertise",
+        "description": "DSRC brings front-end, back-end and full-stack technology expertise and capabilities across a wide variety of technologies, platforms and skill-sets.",
+        "icon": "thumbs-up",
+        "link": { "label": "Learn More", "href": "/contact" }
+      },
+      {
+        "title": "Industry Experience",
+        "description": "Delivering custom software solutions across diverse industry verticals, seamlessly integrating technology expertise with our domain experience, driving innovation and transformation.",
+        "icon": "star",
+        "link": { "label": "Learn More", "href": "/contact" }
+      }
     ]
   },
   "cta": {
-    "title": "Want to explore how DSRC can help your business?",
-    "subtitle": "Let's talk!",
+    "title": "Want to explore how DSRC can help your business? Let's talk!",
+    "subtitle": "",
     "button": { "label": "Contact Us", "href": "/contact" }
   }
 }

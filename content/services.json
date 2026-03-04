@@ -1,0 +1,64 @@
+{
+  "seo": {
+    "title": "Services - DSRC | Technology Solutions",
+    "description": "Explore DSRC's comprehensive technology services including platform development, application services, digital transformation, and cloud management."
+  },
+  "hero": {
+    "title": "SERVICES",
+    "subtitle": "Delivering innovative technology solutions that drive business growth and transformation.",
+    "bgImage": "/images/hero-slide-1.webp",
+    "breadcrumbs": ["DSRC", "Services"]
+  },
+  "coreServices": {
+    "title": "Core Services",
+    "subtitle": "We deliver agile, cost-effective technology solutions tailored for start-ups, scale-ups, and mid-sized businesses!"
+  },
+  "insights": {
+    "title": "INSIGHTS",
+    "items": [
+      {
+        "title": "Engagement Models",
+        "description": "Experience seamless collaboration, accelerated innovation and intensive control on software development projects using flexible engagement models!",
+        "icon": "briefcase",
+        "link": { "label": "Explore More", "href": "/services" }
+      },
+      {
+        "title": "Technology Expertise",
+        "description": "DSRC brings front-end, back-end and full-stack technology expertise and capabilities across a wide variety of technologies, platforms and skill-sets.",
+        "icon": "thumbs-up",
+        "link": { "label": "Explore More", "href": "/services" }
+      },
+      {
+        "title": "Industry Experience",
+        "description": "Delivering custom software solutions across diverse industry verticals, seamlessly integrating technology expertise with our domain experience, driving innovation and transformation.",
+        "icon": "star",
+        "link": { "label": "Explore More", "href": "/services" }
+      }
+    ]
+  },
+  "caseStudies": {
+    "title": "Case Studies & Success Stories",
+    "items": [
+      {
+        "title": "Talent Pipeline Management Solution",
+        "description": "Bespoke software solution developing a comprehensive workflow driven, intelligent talent nurturing and pipeline management solution!",
+        "image": "/images/case-study-1.jpg"
+      },
+      {
+        "title": "Smart Industry 4.0 Tech Solution",
+        "description": "Solution to capture, analyze and visualize KPIs and perform deep data management and analysis of data from the manufacturing, logistics and utility sectors.",
+        "image": "/images/case-study-2.jpg"
+      },
+      {
+        "title": "Industrial IOT Solutions",
+        "description": "Custom IOT solutions for a wide spectrum of customers and application domains using Azure and AWS IOT.",
+        "image": "/images/case-study-3.jpg"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Your search for a strategic software development partner ends here!",
+    "subtitle": "Come join us for an insightful, exploratory discussion. You will be much impressed!",
+    "button": { "label": "Contact Us", "href": "/contact" }
+  }
+}

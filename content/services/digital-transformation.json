@@ -4,9 +4,12 @@
     "description": "Enabling enterprises to modernise, scale, and compete with confidence."
   },
   "hero": {
-    "title": "Digital Transformation Services",
-    "subtitle": "Enabling Enterprises to Modernise, Scale, and Compete with Confidence"
+    "title": "DIGITAL TRANSFORMATION SERVICES",
+    "subtitle": "Enabling Enterprises to Modernise, Scale, and Compete with Confidence",
+    "bgImage": "/images/hero-slide-1.webp",
+    "breadcrumbs": ["DSRC", "Services", "Digital Transformation Services"]
   },
+  "ctaVariant": "white",
   "overview": {
     "paragraphs": [
       "At DSRC, we partner with enterprises and mid-sized businesses to accelerate their digital transformation journey — modernising legacy systems, re-engineering business processes, and embedding intelligent technologies across the enterprise.",

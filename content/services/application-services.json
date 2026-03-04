@@ -4,9 +4,12 @@
     "description": "Enterprise application services — modernizing, integrating, and managing mission-critical applications."
   },
   "hero": {
-    "title": "Application Development & Modernization",
-    "subtitle": "Modernizing, integrating, and managing mission-critical enterprise applications!"
+    "title": "APPLICATION DEVELOPMENT & MODERNIZATION",
+    "subtitle": "Modernizing, integrating, and managing mission-critical enterprise applications!",
+    "bgImage": "/images/hero-slide-1.webp",
+    "breadcrumbs": ["DSRC", "Services", "Application Development & Modernization"]
   },
+  "ctaVariant": "white",
   "overview": {
     "heading": "Your full-service, Enterprise Application Services Partner!",
     "paragraphs": [

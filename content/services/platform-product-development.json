@@ -4,20 +4,24 @@
     "description": "End-to-end platform and product development through agile, scalable teams."
   },
   "hero": {
-    "title": "Platform & Product Development Services",
-    "subtitle": "Delivering end-to-end platform, and software product engineering services"
+    "title": "PLATFORM & PRODUCT DEVELOPMENT SERVICES",
+    "subtitle": "Delivering end-to-end platform, and software product engineering services",
+    "bgImage": "/images/hero-slide-1.webp",
+    "breadcrumbs": ["DSRC", "Services", "Platform & Product Development Services"]
   },
+  "ctaVariant": "white",
   "whyDsrc": {
-    "title": "Why DSRC for Platform & Product Development?",
+    "title": "WHY DSRC FOR PLATFORM & PRODUCT DEVELOPMENT?",
+    "description": "At DSRC, we help enterprises innovate, modernize, and scale platforms and products with agility and engineering excellence. Acting as a seamless extension of your team, we deliver solutions that are technically robust, cost-efficient, and aligned with your business strategy.",
     "items": [
-      { "title": "Innovation", "description": "Leverage our design-thinking methodology to create unique, market-disruptive software solutions." },
-      { "title": "Agility", "description": "Rapid adaptation to business priorities with consistent quality and faster delivery." },
-      { "title": "Cost-Efficiency", "description": "Optimized delivery models that maximize value while minimizing costs." },
-      { "title": "Seamless Team Extension", "description": "Flexible onshore/offshore teams acting as your internal extension." }
+      { "title": "Innovation", "icon": "/images/icon-innovation.png" },
+      { "title": "Agility", "icon": "/images/icon-agility.png" },
+      { "title": "Cost-Efficiency", "icon": "/images/icon-trust.png" },
+      { "title": "Seamless Team Extension", "icon": "/images/icon-teamwork.png" }
     ]
   },
   "services": {
-    "title": "Our Services",
+    "title": "OUR SERVICES",
     "topRow": [
       {
         "title": "Product & Platform Strategy",
@@ -108,14 +112,31 @@
     ]
   },
   "whyChoose": {
-    "title": "Why Choose DSRC?",
+    "title": "WHY CHOOSE DSRC?",
     "items": [
-      { "title": "Innovation-First Approach", "description": "Leverage our design-thinking methodology to create unique, market-disruptive software solutions." },
-      { "title": "End-to-End Delivery", "description": "From strategy and design to engineering, modernization, and lifecycle support." },
-      { "title": "Agility at Scale", "description": "Rapid adaptation to business priorities with consistent quality." },
-      { "title": "Seamless Team Extension", "description": "Flexible onshore/offshore teams acting as your internal extension." },
-      { "title": "Proven Delivery Models", "description": "Hybrid onshore–offshore ensuring quality, cost-efficiency, and 24/7 productivity." },
-      { "title": "Engineering Heritage & Global Expertise", "description": "50+ years delivering enterprise-grade software." }
+      { "title": "Innovation-First Approach", "description": "Leverage our design-thinking methodology to create unique, market-disruptive software solutions.", "icon": "target" },
+      { "title": "Seamless Team Extension", "description": "Flexible onshore/offshore teams acting as your internal extension.", "icon": "user-plus" },
+      { "title": "End-to-End Delivery", "description": "From strategy and design to engineering, modernization, and lifecycle support.", "icon": "infinity" },
+      { "title": "Proven Delivery Models", "description": "Hybrid onshore–offshore ensuring quality, cost-efficiency, and 24/7 productivity.", "icon": "settings" },
+      { "title": "Agility at Scale", "description": "Rapid adaptation to business priorities with consistent quality.", "icon": "scale" },
+      { "title": "Engineering Heritage & Global Expertise:", "description": "50+ years delivering enterprise-grade software.", "icon": "globe" }
+    ]
+  },
+  "process": {
+    "title": "HOW WE WORK WITH YOU",
+    "steps": [
+      { "title": "Discovery & Strategy", "description": "Understand business needs, define vision, scope MVP." },
+      { "title": "MVP Development", "description": "Rapid prototyping, iterative testing, launch market-ready solutions." },
+      { "title": "Scale & Expand", "description": "Feature enhancements, architecture strengthening, ecosystem integration." },
+      { "title": "Sustain & Evolve", "description": "Long-term support, maintenance, continuous improvement." }
+    ]
+  },
+  "caseStudies": {
+    "title": "Case Studies & Success Stories",
+    "items": [
+      { "title": "Talent Pipeline Management Solution", "description": "Bespoke software solution developing a comprehensive workflow driven, intelligent talent nurturing and pipeline management solution!", "image": "/images/case-study-1.jpg" },
+      { "title": "Smart Industry 4.0 Tech Solution", "description": "Solution to capture, analyze and visualize KPIs and perform deep data management and analysis of data from the manufacturing, logistics and utility sectors.", "image": "/images/case-study-2.jpg" },
+      { "title": "Industrial IOT Solutions", "description": "Experience delivering custom IOT solutions for a wide spectrum of customers and application domains using Azure and AWS IOT.", "image": "/images/case-study-3.jpg" }
     ]
   },
   "cta": {

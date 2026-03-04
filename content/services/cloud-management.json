@@ -4,9 +4,12 @@
     "description": "Comprehensive cloud solutions covering DevOps, Cloud Infrastructure, IT Operations and Security Management."
   },
   "hero": {
-    "title": "Cloud Management Services",
-    "subtitle": "Learning more about DSRC can help manage your Cloud Infrastructure, covering operations, security, and cost-optimization."
+    "title": "CLOUD MANAGEMENT SERVICES",
+    "subtitle": "Learning more about DSRC can help manage your Cloud Infrastructure, covering operations, security, and cost-optimization.",
+    "bgImage": "/images/hero-slide-1.webp",
+    "breadcrumbs": ["DSRC", "Services", "Cloud Management Services"]
   },
+  "ctaVariant": "white",
   "overview": {
     "heading": "Eliminate on-premises servers and discover more space on your business floors",
     "paragraphs": [

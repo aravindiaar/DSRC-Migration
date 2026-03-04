@@ -1,5 +1,5 @@
 import { useHead } from "@/hooks/use-head";
-import { siteContent } from "@/data/siteContent";
+import { usePageContent } from "@/lib/content";
 import HeroSlider from "@/components/sections/HeroSlider";
 import WhoWeAreSection from "@/components/sections/WhoWeAreSection";
 import ServicesSection from "@/components/sections/ServicesSection";
@@ -7,42 +7,50 @@ import CustomersSection from "@/components/sections/CustomersSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import CareersSection from "@/components/sections/CareersSection";
 
-const { home } = siteContent.pages;
-
 export default function Home() {
+  const { data: page, isLoading } = usePageContent("home");
+
   useHead({
-    title: home.seo.title,
-    description: home.seo.description,
+    title: page?.seo?.title || "DSRC",
+    description: page?.seo?.description || "",
   });
+
+  if (isLoading || !page) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="w-8 h-8 border-4 border-[#0033a0] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <>
-      <HeroSlider slides={home.heroSlides} />
+      <HeroSlider slides={page.heroSlides} />
 
       <WhoWeAreSection
-        sectionTitle={home.whoWeAre.sectionTitle}
-        paragraphs={home.whoWeAre.paragraphs}
-        cta={home.whoWeAre.cta}
+        sectionTitle={page.whoWeAre.sectionTitle}
+        paragraphs={page.whoWeAre.paragraphs}
+        cta={page.whoWeAre.cta}
       />
 
       <ServicesSection
-        sectionTitle={home.services.sectionTitle}
-        subtitle={home.services.subtitle}
-        items={home.services.items}
+        sectionTitle={page.services.sectionTitle}
+        subtitle={page.services.subtitle}
+        items={page.services.items}
       />
 
-      <CustomersSection logos={home.customers.logos} />
+      <CustomersSection logos={page.customers.logos} />
 
       <TestimonialsSection
-        sectionTitle={home.testimonials.sectionTitle}
-        items={home.testimonials.items}
+        sectionTitle={page.testimonials.sectionTitle}
+        items={page.testimonials.items}
       />
 
       <CareersSection
-        sectionTitle={home.careers.sectionTitle}
-        heading={home.careers.heading}
-        description={home.careers.description}
-        cta={home.careers.cta}
+        sectionTitle={page.careers.sectionTitle}
+        heading={page.careers.heading}
+        description={page.careers.description}
+        cta={page.careers.cta}
       />
     </>
   );

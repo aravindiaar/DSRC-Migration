@@ -1,0 +1,50 @@
+{
+  "seo": {
+    "title": "Application Development & Modernization - DSRC",
+    "description": "Enterprise application services — modernizing, integrating, and managing mission-critical applications."
+  },
+  "hero": {
+    "title": "Application Development & Modernization",
+    "subtitle": "Modernizing, integrating, and managing mission-critical enterprise applications!"
+  },
+  "overview": {
+    "heading": "Your full-service, Enterprise Application Services Partner!",
+    "paragraphs": [
+      "At DSRC, we help enterprises and mid-sized businesses build and customize enterprise applications to drive efficiency, scalability, and digital transformation. Our Enterprise Application Services are designed to extend the life and value of existing systems while ensuring they evolve in step with business needs.",
+      "From custom enterprise applications, ERP/CRM extensions, and legacy platform modernization to system integrations, cloud migration, and ongoing support, we provide comprehensive services that enhance performance and reduce operational risk.",
+      "With 50+ years of engineering excellence, we partner with organizations to transform complex legacy systems into agile, future-ready solutions — empowering teams to operate smarter, faster, and with greater resilience."
+    ]
+  },
+  "expertise": {
+    "title": "Expertise & Capabilities",
+    "items": [
+      { "title": "Web Application Development", "description": "Accelerate innovation & growth, delivering next generation applications!" },
+      { "title": "Mobile App Development", "description": "Native Apps or Hybrid Apps? We can help you build native and truly cross-platform enterprise B2B and B2C mobile applications and mobility solutions." },
+      { "title": "Application Modernization", "description": "Reimagine, Rearchitect and Modernize legacy software systems transforming them into a modern software system with scalable performance and usability." },
+      { "title": "Support & Maintenance", "description": "Next-gen, application support and maintenance services to manage product roadmap, bug and issue management, and support." },
+      { "title": "DevOps", "description": "Build software faster and deploy them rapidly, and securely by employing proven DevOps plan, strategy and frameworks." },
+      { "title": "Digital API Services", "description": "We can help you build native and truly cross-platform enterprise B2B and B2C mobile applications and mobility solutions." },
+      { "title": "UI/UX Development", "description": "Vast front-end development experience implementing interactive and visual design principles for a positive and cohesive user experience." },
+      { "title": "SQA & Test Automation", "description": "Enabling enterprises to move their digital assets and application workload to a modern cloud platform!" }
+    ]
+  },
+  "insights": {
+    "engagementModels": {
+      "title": "Engagement Models",
+      "description": "Experience seamless collaboration, accelerated innovation and intensive control on software development projects using flexible engagement models!"
+    },
+    "technologyExpertise": {
+      "title": "Technology Expertise",
+      "description": "DSRC brings front-end, back-end and full-stack technology expertise and capabilities across a wide variety of technologies, platforms and skill-sets."
+    },
+    "industryExperience": {
+      "title": "Industry Experience",
+      "description": "Delivering custom software solutions across diverse industry verticals, seamlessly integrating technology expertise with our domain experience, driving innovation and transformation."
+    }
+  },
+  "cta": {
+    "title": "Want to explore how DSRC can help your business?",
+    "subtitle": "Let's talk!",
+    "button": { "label": "Contact Us", "href": "/contact" }
+  }
+}

@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { siteContent } from "@/data/siteContent";
-
-const { nav, logoUrl } = siteContent.global;
+import { useGlobalContent } from "@/lib/content";
 
 export default function Navbar() {
+  const { data: global } = useGlobalContent();
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [location] = useLocation();
@@ -30,6 +29,10 @@ export default function Navbar() {
     setActiveDropdown((prev) => (prev === label ? null : label));
   };
 
+  if (!global) return <nav className="sticky top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 h-[70px]" />;
+
+  const { nav, logoUrl } = global;
+
   return (
     <nav
       data-testid="navbar"
@@ -46,7 +49,7 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-0" ref={dropdownRef}>
-            {nav.map((item) => (
+            {nav.map((item: any) => (
               <div key={item.label} className="relative">
                 <button
                   type="button"
@@ -62,7 +65,7 @@ export default function Navbar() {
                 {activeDropdown === item.label && (
                   <div className="absolute top-full left-0 pt-1 min-w-[260px]" role="menu">
                     <div className="bg-white rounded shadow-lg border border-gray-100 py-2">
-                      {item.children?.map((child) => (
+                      {item.children?.map((child: any) => (
                         <Link key={child.label} href={child.href}>
                           <span
                             role="menuitem"
@@ -108,7 +111,7 @@ export default function Navbar() {
       {isOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 shadow-lg" role="navigation">
           <div className="px-4 py-3 space-y-1">
-            {nav.map((item) => (
+            {nav.map((item: any) => (
               <div key={item.label}>
                 <Link href={item.href}>
                   <span
@@ -120,7 +123,7 @@ export default function Navbar() {
                 </Link>
                 {item.children && (
                   <div className="pl-4">
-                    {item.children.map((child) => (
+                    {item.children.map((child: any) => (
                       <Link key={child.label} href={child.href}>
                         <span
                           data-testid={`mobile-nav-sub-${child.label.toLowerCase().replace(/\s+/g, "-")}`}

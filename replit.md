@@ -2,39 +2,61 @@
 
 ## Overview
 
-Corporate website for **DSRC** (Data Software Research Company), a faithful recreation of dsrc.com. Built as a React SPA with all content driven from a centralized data file.
+Corporate website for **DSRC** (Data Software Research Company), a faithful recreation of dsrc.com. Built as a React SPA with all content served from a JSON-based CMS via Express API.
 
 ## Pages
 
 - **Home** (`/`) — Hero image slider, WHO WE ARE paragraphs, Services grid with images, Customer logos, Testimonials with photos, Careers CTA
-- **Services** (`/services`) — Detailed service offerings with alternating image/text layout
-- **Who We Are** (`/who-we-are`) — Vision, Mission, Values, Company Overview, Global Locations
-- **Careers** (`/careers`) — Benefits, Core Values, Career CTA
-- **Contact** (`/contact`) — Contact form + 5 office listings
+- **Services** (`/services`) — Overview of all 4 service categories
+- **Platform & Product Development** (`/services/platform-product-development`) — Capabilities, GenAI, engagement models, process steps, case studies
+- **Application Services** (`/services/application-services`) — Expertise areas, engagement models, technology/industry experience
+- **Digital Transformation** (`/services/digital-transformation`) — Capabilities, phased approach, governance, business impact
+- **Cloud Management** (`/services/cloud-management`) — Cloud computing, IT ops, security services
+- **Who We Are** (`/who-we-are`) — Intro, Vision, Mission, DSRC Difference stats, Company Overview, Values, Office Locations
+- **Careers** (`/careers`) — Intro, highlights (People/Values/Opportunities/Rewards), Working at DSRC sections, CTA
+- **Contact** (`/contact`) — Intro, contact form, 5 office listings
 
 ## Architecture
+
+### CMS (JSON-based)
+- Content stored as JSON files in `/content/` directory
+- `content/global.json` — Navigation, footer, site-wide config
+- `content/home.json` — Home page content
+- `content/who-we-are.json` — About page content
+- `content/careers.json` — Careers page content
+- `content/contact.json` — Contact page content
+- `content/services/*.json` — Individual service detail pages
+- Express API serves content via:
+  - `GET /api/content/global` — Global site config
+  - `GET /api/content/pages/:page` — Page content
+  - `GET /api/content/services/:slug` — Service detail content
+  - `PUT /api/content/*` — Update content (CMS write)
+  - `GET /api/content/list` — List all available content files
 
 ### Frontend
 - React 18 + TypeScript, Vite bundler
 - Routing: `wouter`
+- Content fetching: `@tanstack/react-query` via `client/src/lib/content.ts` hooks
+  - `useGlobalContent()` — Navbar/Footer data
+  - `usePageContent(page)` — Page-specific data
+  - `useServiceContent(slug)` — Service detail data
 - Styling: Tailwind CSS + DSRC brand color `#0033a0`
 - Components: shadcn/ui primitives for form elements
 - Icons: `lucide-react`, `react-icons/si` (LinkedIn)
 - SEO: Custom `useHead` hook for document title + meta tags
-- Images: Hero slides, service photos, customer logos, testimonial photos in `/public/images/`
-
-### Content Strategy
-All site text in `client/src/data/siteContent.ts`. Page components pass data as props to reusable section components.
+- Images: Hero slides, service photos, customer logos, testimonial photos in `/client/public/images/`
 
 ### Component Structure
 - `client/src/components/layout/` — Navbar (sticky white, logo, dropdowns), Footer (4-column)
 - `client/src/components/sections/` — HeroSlider, HeroSection, WhoWeAreSection, ServicesSection, TestimonialsSection, CareersSection, CTASection, ContactSection, CustomersSection
+- `client/src/pages/` — Home, Services, ServiceDetail (reusable for all 4 services), WhoWeAre, Careers, Contact
 - `client/src/hooks/use-head.ts` — SEO head management
+- `client/src/lib/content.ts` — React Query hooks for CMS content
 
 ### Backend
 - Express 5 (TypeScript), entry: `server/index.ts`
+- CMS API routes in `server/routes.ts`
 - Vite dev middleware in development
-- Routes skeleton in `server/routes.ts`
 
 ### Design Matching dsrc.com
 - White navbar with DSRC logo image and navy blue "Let's Connect!" button

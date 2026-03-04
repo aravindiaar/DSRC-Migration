@@ -1,57 +1,46 @@
 import { useHead } from "@/hooks/use-head";
+import { usePageContent } from "@/lib/content";
 import HeroSection from "@/components/sections/HeroSection";
 import { MapPin } from "lucide-react";
 
-const values = [
-  { title: "Ambitious & Entrepreneurial", description: "We set bold goals and pursue them with relentless determination, fostering an entrepreneurial spirit." },
-  { title: "Insightful & Experienced", description: "With five decades of expertise, we bring deep industry knowledge and technical insight to every engagement." },
-  { title: "Ethical, Honest & Professional", description: "Integrity is at the core of everything we do. We maintain the highest standards of professionalism." },
-  { title: "Responsive & Responsible", description: "We are committed to being responsive to our clients' needs while taking responsibility for our work." },
-  { title: "Innovation", description: "We continuously explore new technologies and methodologies to deliver cutting-edge solutions." },
-  { title: "Disruptive", description: "We challenge the status quo and embrace disruptive thinking to create breakthrough solutions." },
-  { title: "Collaborative", description: "We believe in the power of teamwork, fostering strong partnerships with our clients and within our teams." },
-  { title: "Hardworking", description: "We are dedicated to delivering excellence through hard work, discipline, and commitment to quality." },
-];
-
-const offices = [
-  { city: "Chennai, India", role: "Corporate Headquarters", address: "11 Smith Road, 'Kasturi Towers'" },
-  { city: "Santa Clara, CA", role: "US West Coast", address: "4677 Old Ironsides Drive, Suite# 250" },
-  { city: "Parsippany, NJ", role: "US East Coast", address: "2011 Route 46, Waterview Plaza, Suite 310" },
-  { city: "London, UK", role: "United Kingdom", address: "10 Orange Street, Haymarket" },
-  { city: "Amsterdam, NL", role: "Netherlands", address: "Herengracht 449a" },
-];
-
 export default function WhoWeAre() {
+  const { data: page, isLoading } = usePageContent("who-we-are");
+
   useHead({
-    title: "Who We Are - DSRC | About Us",
-    description: "Learn about DSRC's five decades of engineering excellence.",
+    title: page?.seo?.title || "Who We Are - DSRC",
+    description: page?.seo?.description || "",
   });
+
+  if (isLoading || !page) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="w-8 h-8 border-4 border-[#0033a0] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <>
       <HeroSection
-        title="Who We Are"
-        subtitle="Engineering strength and agile innovation, delivering excellence for over five decades."
+        title={page.hero.title}
+        subtitle={page.hero.subtitle}
       />
 
-      <section id="vision" className="py-16 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-5 mb-12">
+            {page.intro.paragraphs.map((p: string, idx: number) => (
+              <p key={idx} className="text-[15px] text-gray-600 leading-[1.8]">{p}</p>
+            ))}
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div data-testid="vision-block">
-              <h3 className="text-lg font-bold text-[#0033a0] mb-4">Our Vision</h3>
-              <p className="text-[15px] text-gray-600 leading-[1.8]">
-                To be a globally recognized technology partner, known for engineering excellence,
-                innovation, and delivering transformative solutions that help our clients succeed
-                in an ever-evolving digital landscape.
-              </p>
+              <h3 className="text-lg font-bold text-[#0033a0] mb-4">{page.vision.title}</h3>
+              <p className="text-[15px] text-gray-600 leading-[1.8]">{page.vision.text}</p>
             </div>
             <div data-testid="mission-block">
-              <h3 className="text-lg font-bold text-[#0033a0] mb-4">Our Mission</h3>
-              <p className="text-[15px] text-gray-600 leading-[1.8]">
-                To empower organizations worldwide through innovative technology solutions,
-                leveraging our deep domain expertise and passionate team of engineers to deliver
-                measurable business value and accelerate digital transformation.
-              </p>
+              <h3 className="text-lg font-bold text-[#0033a0] mb-4">{page.mission.title}</h3>
+              <p className="text-[15px] text-gray-600 leading-[1.8]">{page.mission.text}</p>
             </div>
           </div>
         </div>
@@ -59,19 +48,13 @@ export default function WhoWeAre() {
 
       <section id="difference" className="py-16 bg-[#f5f5f5]">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-4">The DSRC Difference</h2>
+          <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-4">{page.difference.title}</h2>
           <p className="text-center text-[15px] text-gray-600 max-w-2xl mx-auto mb-10">
-            With over 50 years of experience and 350+ skilled engineers, DSRC delivers
-            innovative technology solutions to global enterprises across multiple continents.
+            {page.difference.subtitle}
           </p>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { value: "50+", label: "Years of Experience" },
-              { value: "350+", label: "Skilled Engineers" },
-              { value: "5", label: "Global Offices" },
-              { value: "100+", label: "Enterprise Clients" },
-            ].map((stat, idx) => (
+            {page.difference.stats.map((stat: any, idx: number) => (
               <div key={idx} className="text-center py-6 px-4 bg-white rounded border border-gray-200">
                 <div className="text-3xl font-bold text-[#0033a0]">{stat.value}</div>
                 <div className="mt-2 text-sm text-gray-500">{stat.label}</div>
@@ -81,15 +64,24 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      <section id="values" className="py-16 bg-white">
+      {page.companyOverview && (
+        <section className="py-16 bg-white">
+          <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-6">{page.companyOverview.title}</h2>
+            <p className="text-[15px] text-gray-600 leading-[1.8] text-center">{page.companyOverview.text}</p>
+          </div>
+        </section>
+      )}
+
+      <section id="values" className="py-16 bg-[#f5f5f5]">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-10">Our Values</h2>
+          <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-10">{page.values.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {values.map((value, idx) => (
+            {page.values.items.map((value: any, idx: number) => (
               <div
                 key={idx}
                 data-testid={`value-card-${idx}`}
-                className="p-5 bg-[#f5f5f5] rounded"
+                className="p-5 bg-white rounded border border-gray-200"
               >
                 <h3 className="text-sm font-bold text-gray-800 mb-2">{value.title}</h3>
                 <p className="text-xs text-gray-500 leading-relaxed">{value.description}</p>
@@ -99,12 +91,12 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      <section id="locations" className="py-16 bg-[#f5f5f5]">
+      <section id="locations" className="py-16 bg-white">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-10">Our Offices Worldwide</h2>
+          <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-10">{page.locations.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {offices.map((office, idx) => (
-              <div key={idx} data-testid={`location-${idx}`} className="p-5 bg-white rounded border border-gray-200">
+            {page.locations.offices.map((office: any, idx: number) => (
+              <div key={idx} data-testid={`location-${idx}`} className="p-5 bg-[#f5f5f5] rounded border border-gray-200">
                 <h3 className="font-bold text-gray-800 text-sm">{office.city}</h3>
                 <p className="text-xs text-[#0033a0] font-medium mt-1">{office.role}</p>
                 <div className="flex items-start gap-1.5 mt-2 text-sm text-gray-500">

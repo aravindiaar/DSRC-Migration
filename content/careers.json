@@ -1,0 +1,54 @@
+{
+  "seo": {
+    "title": "Careers at DSRC - Join Our Team",
+    "description": "Explore career opportunities at DSRC. We're constantly seeking exceptional talent."
+  },
+  "hero": {
+    "title": "Careers",
+    "subtitle": "Looking for a new challenge? At DSRC, we offer a wide range of career options and an opportunity to work in a vibrant work environment!"
+  },
+  "intro": {
+    "heading": "Take your career to new heights",
+    "subheading": "We're constantly seeking exceptional talent, your next big opportunity awaits here — Innovate, Grow, Succeed. Join the team that values you!",
+    "question": "Are you creative, passionate, entrepreneurial and have the ability to solve problems with a little ingenuity?",
+    "answer": "Well then, you are one-step closer to being part of a great workplace. We welcome you!",
+    "paragraphs": [
+      "At DSRC we have built a reputation for recruiting, retaining and nurturing the most talented individuals in the industry.",
+      "We select individuals for the right blend of talent, culture, and leadership, creating a team that is passionate about challenging work and a sense of belonging.",
+      "Our core teams have an average of over 15 years of professional experience with DSRC, a remarkable statistic that speaks volumes about the quality of our work environment and the opportunities we provide.",
+      "With offices in India, USA, UK, and the Netherlands, we offer truly global career opportunities."
+    ]
+  },
+  "highlights": [
+    { "title": "People", "description": "Our greatest asset — talented professionals who are passionate about technology and committed to excellence." },
+    { "title": "Values", "description": "Professionalism, trust, respect, fairness, and responsibility guide everything we do." },
+    { "title": "Opportunities", "description": "Global career opportunities across diverse projects, technologies, and industries." },
+    { "title": "Rewards", "description": "Competitive compensation, benefits, learning programs, and clear career growth paths." }
+  ],
+  "workingAtDsrc": {
+    "title": "Working at DSRC",
+    "sections": [
+      {
+        "title": "People",
+        "description": "Our greatest asset is our people. We invest in hiring the best talent and providing them with an environment where they can thrive, innovate, and build lasting careers."
+      },
+      {
+        "title": "Core Values",
+        "description": "Professionalism, trust, respect, fairness, and responsibility are the cornerstones of our culture. These values shape our interactions with clients, partners, and each other."
+      },
+      {
+        "title": "Opportunities",
+        "description": "From cutting-edge technology projects to global client engagements, DSRC offers diverse career paths that challenge and inspire growth at every level."
+      },
+      {
+        "title": "Rewards",
+        "description": "We offer competitive compensation packages, comprehensive benefits, continuous learning programs, and clear career progression paths that reward performance and dedication."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Build a future you believe in",
+    "subtitle": "Send us your resume and let's explore how you can grow with us.",
+    "button": { "label": "Apply Now", "href": "/contact" }
+  }
+}

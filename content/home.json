@@ -1,0 +1,106 @@
+{
+  "seo": {
+    "title": "DSRC - Engineer the Future | Software Engineering & Digital Transformation",
+    "description": "Collaborate with passionate technologists building next-gen platforms for global enterprises. Discover opportunities to innovate, learn, and excel."
+  },
+  "heroSlides": [
+    {
+      "title": "Modernise Legacy Systems & Embrace Future-Ready Technology",
+      "subtitle": "Re-engineer legacy platforms, adopt microservices, APIs, cloud-containerisation and GenAI powered automation to boost performance and reduce tech-debt.",
+      "cta": { "label": "LEARN MORE...", "href": "/services/digital-transformation" },
+      "bgImage": "/images/hero-slide-1.webp"
+    },
+    {
+      "title": "Engineer the Future with DSRC",
+      "subtitle": "Collaborate with passionate technologists building next-gen platforms for global enterprises. Discover opportunities to innovate, learn, and excel in a culture that values creativity and excellence.",
+      "cta": { "label": "JOIN OUR TEAM", "href": "/careers" },
+      "bgImage": "/images/hero-slide-4.webp"
+    },
+    {
+      "title": "Partner with DSRC to Engineer Cloud-Native Platforms",
+      "subtitle": "Partner with DSRC to engineer cloud-native platforms and products that align with your business strategy, delivering agility, scalability and sustainability.",
+      "cta": { "label": "LEARN MORE...", "href": "/services/cloud-management" },
+      "bgImage": "/images/hero-slide-3.webp"
+    }
+  ],
+  "whoWeAre": {
+    "sectionTitle": "WHO WE ARE",
+    "paragraphs": [
+      "DSRC blends proven engineering strength with agile innovation to help organisations modernise, build smarter, and achieve measurable business impact.",
+      "With over five decades of technology and engineering expertise, DSRC serves as a trusted global partner for businesses seeking to innovate and scale with confidence.",
+      "We bring ideas to life through modern technologies, flexible engagement models, and a collaborative approach that ensures clarity, agility, and dependable delivery.",
+      "Our 350+ skilled engineers work closely with clients to design and develop secure, scalable, and future-ready digital solutions tailored to their goals.",
+      "Focused on quality, performance, and long-term value, DSRC enables startups, SMEs, and enterprises to accelerate digital transformation and achieve meaningful outcomes.",
+      "We remain committed to professionalism, client satisfaction, and continuous innovation in everything we do."
+    ],
+    "cta": { "label": "Learn More", "href": "/who-we-are" }
+  },
+  "services": {
+    "sectionTitle": "WHAT WE CAN DO FOR YOU",
+    "subtitle": "We deliver agile, cost-effective technology solutions tailored for start-ups, scale-ups, and mid-sized businesses!",
+    "items": [
+      {
+        "title": "PLATFORM & PRODUCT DEVELOPMENT",
+        "description": "Deliver end-to-end platform and product development through agile, scalable teams — expanding your capabilities cost-effectively, accelerating time-to-market, and keeping you ahead of the competition.",
+        "image": "/images/service-platform.webp",
+        "href": "/services/platform-product-development"
+      },
+      {
+        "title": "APPLICATION SERVICES",
+        "description": "Unleashing innovation, agility and advancement, empowering Enterprise businesses with modern Web, Mobile, and cross-platform applications built with state-of-the-art technologies and frameworks.",
+        "image": "/images/service-application.webp",
+        "href": "/services/application-services"
+      },
+      {
+        "title": "DIGITAL TRANFORMATION SERVICES",
+        "description": "Helping businesses in the digital transformation journey, modernizing their IT business systems and applications, process, and the way their workforce operates internally and how they deal with their customers.",
+        "image": "/images/service-digital.jpg",
+        "href": "/services/digital-transformation"
+      },
+      {
+        "title": "CLOUD MANAGEMENT SERVICES",
+        "description": "We can help design, build, and manage comprehensive cloud solutions covering DevOps, Deployment, SysOps covering Cloud Infrastructure and IT Operations Management and Cloud Security Management!",
+        "image": "/images/service-cloud.webp",
+        "href": "/services/cloud-management"
+      }
+    ]
+  },
+  "customers": {
+    "logos": [
+      "/images/customer-1.png",
+      "/images/customer-2.png",
+      "/images/customer-3.png",
+      "/images/customer-4.png",
+      "/images/customer-5.png"
+    ]
+  },
+  "testimonials": {
+    "sectionTitle": "WHAT OUR CLIENTS SAY",
+    "items": [
+      {
+        "quote": "Working with the DSRC team on the NestLink project has been an excellent experience from start to finish. The team demonstrated great professionalism, creativity, and a strong commitment to quality throughout the engagement. DSRC's collaborative approach and technical expertise have been instrumental in delivering a robust and well-designed product that aligns with our vision. We look forward to continuing our partnership as we take NestLink to the next stage of development.",
+        "author": "Susan Ashworth",
+        "role": "Product owner at Watkins Property Ventures, United Kingdom",
+        "image": "/images/testimonial-1.jpg"
+      },
+      {
+        "quote": "DSRC has been a big part of our success here at Keyhouse. The team at DSRC has been instrumental in development and design for many projects here at Keyhouse. Their level of ownership and expertise provides a very trusting experience and engagement. DSRC is a valuable and trusted partner in our business!",
+        "author": "Stephen Keogh",
+        "role": "CEO & Technical Director at Dye & Durham, Ireland",
+        "image": "/images/testimonial-2.png"
+      },
+      {
+        "quote": "We've had the opportunity to work with DSRC for several years across a diverse range of projects. Their team consistently demonstrates deep technical expertise, delivering solutions that bring meaningful value to our work. Professional, friendly, approachable, and proactive, they are always willing to go the extra mile. DSRC has been a trusted and collaborative partner, and we sincerely appreciate their continued commitment and support.",
+        "author": "Bashar Nassar",
+        "role": "VP of Engineering at SystemWeaver, Sweden",
+        "image": "/images/testimonial-3.png"
+      }
+    ]
+  },
+  "careers": {
+    "sectionTitle": "CAREERS AT DSRC",
+    "heading": "Are you creative, passionate, entrepreneurial and can solve problems with a little ingenuity?",
+    "description": "We are constantly looking for top talent, come let's work together and support in our endeavour to delight customers with scalable and performance-driven, innovative, next-generation software solution.",
+    "cta": { "label": "View Opportunities", "href": "/careers" }
+  }
+}

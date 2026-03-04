@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { SiLinkedin } from "react-icons/si";
-import { siteContent } from "@/data/siteContent";
+import { useGlobalContent } from "@/lib/content";
 
 interface CareersProps {
   sectionTitle: string;
@@ -10,6 +10,8 @@ interface CareersProps {
 }
 
 export default function CareersSection({ sectionTitle, heading, description, cta }: CareersProps) {
+  const { data: global } = useGlobalContent();
+
   return (
     <section data-testid="careers-section" className="py-16 lg:py-20 bg-white">
       <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,15 +38,17 @@ export default function CareersSection({ sectionTitle, heading, description, cta
               {cta.label}
             </span>
           </Link>
-          <a
-            href={siteContent.global.footer.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid="link-careers-linkedin"
-            className="text-gray-400 hover:text-[#0033a0] transition-colors"
-          >
-            <SiLinkedin className="w-6 h-6" />
-          </a>
+          {global?.footer?.social?.linkedin && (
+            <a
+              href={global.footer.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="link-careers-linkedin"
+              className="text-gray-400 hover:text-[#0033a0] transition-colors"
+            >
+              <SiLinkedin className="w-6 h-6" />
+            </a>
+          )}
         </div>
       </div>
     </section>

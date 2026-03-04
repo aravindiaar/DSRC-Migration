@@ -1,0 +1,77 @@
+{
+  "siteName": "DSRC",
+  "logoUrl": "/images/dsrc-logo.png",
+  "nav": [
+    {
+      "label": "Services",
+      "href": "/services",
+      "children": [
+        { "label": "Platform & Product Development", "href": "/services/platform-product-development" },
+        { "label": "Application Services & Modernization", "href": "/services/application-services" },
+        { "label": "Digital Transformation Services", "href": "/services/digital-transformation" },
+        { "label": "Cloud Management Services", "href": "/services/cloud-management" }
+      ]
+    },
+    {
+      "label": "Insights",
+      "href": "/services",
+      "children": [
+        { "label": "Technology Expertise", "href": "/services" },
+        { "label": "Engagement Models", "href": "/services" },
+        { "label": "Case Studies", "href": "/services" },
+        { "label": "Client Testimonials", "href": "/#testimonials" },
+        { "label": "Industry Experience", "href": "/services" }
+      ]
+    },
+    {
+      "label": "About",
+      "href": "/who-we-are",
+      "children": [
+        { "label": "Who We Are", "href": "/who-we-are" },
+        { "label": "The DSRC Difference", "href": "/who-we-are#difference" },
+        { "label": "Global Locations", "href": "/who-we-are#locations" }
+      ]
+    },
+    {
+      "label": "Careers",
+      "href": "/careers",
+      "children": [
+        { "label": "Working at DSRC", "href": "/careers" },
+        { "label": "Job Opportunities", "href": "/careers#opportunities" },
+        { "label": "Career Enquiry", "href": "/contact" }
+      ]
+    }
+  ],
+  "footer": {
+    "quickLinks": [
+      { "label": "We are DSRC!", "href": "/who-we-are" },
+      { "label": "Services", "href": "/services" },
+      { "label": "Careers", "href": "/careers" },
+      { "label": "Contact Us", "href": "/contact" },
+      { "label": "Sitemap", "href": "/" }
+    ],
+    "headquarters": {
+      "title": "Global Headquarters",
+      "company": "Data Software Research Company Private Limited",
+      "address": "11 Smith Road, 'Kasturi Towers', Chennai 600002, Tamilnadu, India",
+      "phone": "+91 (0)44 4510-5000",
+      "fax": "+91 (0)44 4510-5001"
+    },
+    "offices": [
+      "California, United States",
+      "New Jersey, United States",
+      "London, United Kingdom",
+      "Amsterdam, Netherlands"
+    ],
+    "salesPhones": [
+      { "region": "United Kingdom", "phone": "+44 2078703112", "flag": "🇬🇧" },
+      { "region": "Ireland", "phone": "+353 818687435", "flag": "🇮🇪" },
+      { "region": "Europe", "phone": "+31 20 808 2165", "flag": "🇪🇺" },
+      { "region": "United States & Canada", "phone": "+1 201 534 6351", "flag": "🇺🇸" }
+    ],
+    "copyright": "DSRC 2024. All Rights Reserved.",
+    "social": {
+      "linkedin": "https://in.linkedin.com/company/dsrc"
+    }
+  }
+}

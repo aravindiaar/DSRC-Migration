@@ -1,0 +1,112 @@
+{
+  "seo": {
+    "title": "Digital Transformation Services - DSRC",
+    "description": "Helping businesses modernize legacy systems and embrace digital transformation."
+  },
+  "hero": {
+    "title": "Digital Transformation Services",
+    "subtitle": "Accelerating enterprise modernisation through intelligent technology adoption, process re-engineering, and scalable digital solutions."
+  },
+  "overview": {
+    "paragraphs": [
+      "At DSRC, we partner with enterprises and mid-sized businesses to accelerate their digital transformation journey — modernising legacy systems, re-engineering business processes, and embedding intelligent technologies across the enterprise.",
+      "Our approach is grounded in deep domain expertise, modern engineering practices, and a collaborative delivery model that ensures measurable outcomes, minimal disruption, and long-term scalability.",
+      "With 50+ years of engineering heritage, DSRC brings the experience, innovation, and agility needed to help organisations compete and lead in the digital-first economy."
+    ]
+  },
+  "capabilities": {
+    "title": "Digital Transformation Capabilities",
+    "items": [
+      "Application modernisation & legacy migration",
+      "Cloud-native re-platforming & containerisation",
+      "Data & analytics transformation",
+      "Process automation & intelligent workflows",
+      "API-first & microservices architecture",
+      "Enterprise integration & interoperability",
+      "Digital experience platforms",
+      "Cybersecurity & compliance modernisation"
+    ]
+  },
+  "approach": {
+    "title": "Our Approach",
+    "description": "We follow a structured, phased approach to transformation — ensuring alignment with business objectives, measurable outcomes, and minimal disruption.",
+    "phases": [
+      {
+        "title": "Assess & Define",
+        "description": "Current-state analysis, stakeholder alignment, and transformation roadmap definition.",
+        "items": [
+          "Technology & process maturity assessment",
+          "Business case development & ROI modelling",
+          "Architecture review & modernisation readiness",
+          "Prioritised transformation roadmap"
+        ]
+      },
+      {
+        "title": "Modernise & Build",
+        "description": "Execution of prioritised initiatives using agile, cloud-native engineering practices.",
+        "items": [
+          "Legacy application re-engineering & migration",
+          "Cloud transformation (lift-and-shift, re-platform, re-architect)",
+          "API development & microservices enablement",
+          "Data migration & analytics platform setup",
+          "UI/UX modernisation & digital experience design"
+        ]
+      },
+      {
+        "title": "Optimise, Automate & Scale",
+        "description": "Continuous improvement, automation, and scaling of digital capabilities.",
+        "items": [
+          "Process automation (RPA, AI/ML-driven workflows)",
+          "DevOps & CI/CD pipeline optimisation",
+          "Performance engineering & scalability testing",
+          "Enterprise-wide integration & ecosystem connectivity",
+          "Knowledge transfer & capability building"
+        ]
+      }
+    ]
+  },
+  "governance": {
+    "title": "Governance, Security & Enterprise Assurance",
+    "items": [
+      "Enterprise-grade security & compliance frameworks",
+      "Risk management & mitigation strategies",
+      "Regulatory compliance (GDPR, HIPAA, SOC2)",
+      "Continuous monitoring & incident response",
+      "Data governance & privacy management"
+    ]
+  },
+  "engagementModels": {
+    "title": "Engagement Models Built for Enterprise Needs",
+    "items": [
+      "End-to-End Transformation Programs – Full ownership from assessment to implementation",
+      "Advisory & Consulting Services – Strategic guidance and architecture review",
+      "Managed Transformation Teams – Dedicated offshore/nearshore squads integrated with client teams",
+      "Hybrid Delivery Models – Flexible onshore-offshore teams for cost-optimised delivery"
+    ]
+  },
+  "whyChoose": {
+    "title": "Why Enterprises Choose DSRC",
+    "items": [
+      "50+ years of engineering excellence and enterprise delivery",
+      "Proven expertise across cloud, data, AI/ML, and modern architectures",
+      "Scalable teams with deep domain and technology expertise",
+      "Mature governance frameworks ensuring transparency and accountability",
+      "Global delivery capability with onshore, nearshore, and offshore options"
+    ]
+  },
+  "businessImpact": {
+    "title": "Business Impact We Enable",
+    "items": [
+      "Accelerated time-to-market for digital products and services",
+      "Reduced operational costs through automation and modernisation",
+      "Improved agility and responsiveness to market changes",
+      "Enhanced customer and employee digital experiences",
+      "Stronger security posture and regulatory compliance"
+    ]
+  },
+  "cta": {
+    "title": "Transform with Confidence",
+    "subtitle": "Partner with DSRC to modernise your enterprise, unlock new capabilities, and drive sustainable digital growth.",
+    "button": { "label": "Contact Us", "href": "/contact" }
+  }
+}

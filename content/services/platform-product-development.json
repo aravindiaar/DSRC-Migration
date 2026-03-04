@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "Platform & Product Development Services - DSRC",
+    "description": "End-to-end platform and product development through agile, scalable teams."
+  },
+  "hero": {
+    "title": "Platform & Product Development",
+    "subtitle": "End-to-end platform and product engineering services from ideation to deployment and beyond."
+  },
+  "overview": {
+    "paragraphs": [
+      "We design and build cloud-native digital platforms and applications that deliver agility, scalability, and seamless integration across enterprise ecosystems — enabling rapid development, deployment, and continuous delivery.",
+      "Our teams leverage modern architectural patterns, microservices, API-first design, and DevOps practices to accelerate product launches while minimizing technical debt."
+    ]
+  },
+  "capabilities": [
+    {
+      "title": "Product & Platform Strategy",
+      "items": [
+        "Workshops to align business & technology",
+        "Product roadmap & market fit validation",
+        "Proof-of-Concepts (PoC) & MVP scoping",
+        "Architecture & technology stack definition"
+      ]
+    },
+    {
+      "title": "Platform Modernization & Integration",
+      "items": [
+        "Legacy system re-engineering & migration",
+        "Cloud transformation & containerization",
+        "API & microservices enablement",
+        "Integration with enterprise ecosystems"
+      ]
+    },
+    {
+      "title": "End-to-End Product Development",
+      "items": [
+        "Agile engineering teams integrated with yours",
+        "Full lifecycle: design, build, test, deploy",
+        "Cloud-native, API-first, mobile-first architectures",
+        "Scalable, secure, high-performance systems"
+      ]
+    },
+    {
+      "title": "Ongoing Support & Evolution",
+      "items": [
+        "Post-launch monitoring, maintenance & optimization",
+        "Feature enhancements & architecture scaling",
+        "Dedicated teams ensuring operational continuity"
+      ]
+    },
+    {
+      "title": "Product Excellence & Governance",
+      "items": [
+        "Agile frameworks & best practices",
+        "Continuous quality engineering & DevOps",
+        "Metrics-driven lifecycle management",
+        "User-centric design with measurable outcomes"
+      ]
+    }
+  ],
+  "genai": {
+    "title": "Intelligent Product Development with GenAI & Automation",
+    "description": "We embed Generative AI and intelligent automation throughout the product lifecycle — from design and development to testing, deployment, and maintenance — driving faster releases, improved quality, and optimized engineering effort.",
+    "items": [
+      "AI-assisted development for productivity, code quality, speed, and maintenance",
+      "Intelligent code generation & documentation using AI-based PR reviews, code completion, and refactoring",
+      "AI-assisted error prevention with real-time static analysis for logic and security issues",
+      "AI-driven testing for automated test generation, defect prediction, and self-healing test management",
+      "Predictive analytics for system reliability and proactive maintenance",
+      "AI-driven CI/CD automation for intelligent build optimization and self-healing pipelines",
+      "AI-assisted maintenance & knowledge management"
+    ]
+  },
+  "engagementModels": {
+    "title": "Engagement Models & Delivery Governance",
+    "description": "We offer flexible engagement models designed to meet specific client goals — from end-to-end product ownership to scalable team augmentation. All engagements are managed under a mature governance framework ensuring transparency, agile delivery, and consistent quality outcomes.",
+    "models": [
+      "Turnkey Product Development – Full lifecycle responsibility from ideation to deployment and support",
+      "Extended Development Teams – Scalable offshore or nearshore teams seamlessly integrated into client environments"
+    ]
+  },
+  "whyChoose": {
+    "title": "Why Choose DSRC?",
+    "items": [
+      { "title": "Innovation-First Approach", "description": "Leverage our design-thinking methodology to create unique, market-disruptive software solutions." },
+      { "title": "End-to-End Delivery", "description": "From strategy and design to engineering, modernization, and lifecycle support." },
+      { "title": "Agility at Scale", "description": "Rapid adaptation to business priorities with consistent quality." },
+      { "title": "Seamless Team Extension", "description": "Flexible onshore/offshore teams acting as your internal extension." },
+      { "title": "Proven Delivery Models", "description": "Hybrid onshore–offshore ensuring quality, cost-efficiency, and 24/7 productivity." },
+      { "title": "Engineering Heritage & Global Expertise", "description": "50+ years delivering enterprise-grade software." }
+    ]
+  },
+  "process": {
+    "title": "How We Work With You",
+    "steps": [
+      { "title": "Discovery & Strategy", "description": "Understand business needs, define vision, scope MVP." },
+      { "title": "MVP Development", "description": "Rapid prototyping, iterative testing, launch market-ready solutions." },
+      { "title": "Scale & Expand", "description": "Feature enhancements, architecture strengthening, ecosystem integration." },
+      { "title": "Sustain & Evolve", "description": "Long-term support, maintenance, continuous improvement." }
+    ]
+  },
+  "caseStudies": {
+    "title": "Case Studies & Success Stories",
+    "items": [
+      { "title": "Talent Pipeline Management Solution", "description": "Bespoke software solution developing a comprehensive workflow driven, intelligent talent nurturing and pipeline management solution!" },
+      { "title": "Smart Industry 4.0 Tech Solution", "description": "Solution to capture, analyze and visualize KPIs and perform deep data management and analysis of data from the manufacturing, logistics and utility sectors." },
+      { "title": "Industrial IOT Solutions", "description": "Experience delivering custom IOT solutions for a wide spectrum of customers and application domains using Azure and AWS IOT." }
+    ]
+  },
+  "cta": {
+    "title": "Accelerate Your Platform & Product Journey",
+    "subtitle": "Partner with DSRC to design, build, and scale platforms and products that deliver measurable business impact.",
+    "button": { "label": "Contact Us", "href": "/contact" }
+  }
+}

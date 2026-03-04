@@ -1,10 +1,14 @@
 import { Link } from "wouter";
 import { SiLinkedin } from "react-icons/si";
-import { siteContent } from "@/data/siteContent";
-
-const { footer, logoUrl } = siteContent.global;
+import { useGlobalContent } from "@/lib/content";
 
 export default function Footer() {
+  const { data: global } = useGlobalContent();
+
+  if (!global) return null;
+
+  const { footer, logoUrl } = global;
+
   return (
     <footer data-testid="footer" className="bg-white border-t border-gray-200">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -30,7 +34,7 @@ export default function Footer() {
               Quick Links
             </h4>
             <ul className="space-y-2">
-              {footer.quickLinks.map((link) => (
+              {footer.quickLinks.map((link: any) => (
                 <li key={link.label}>
                   <Link href={link.href}>
                     <span
@@ -60,7 +64,7 @@ export default function Footer() {
               Global Offices
             </h4>
             <ul className="space-y-1.5 text-sm text-gray-500 mb-6">
-              {footer.offices.map((office) => (
+              {footer.offices.map((office: string) => (
                 <li key={office}>{office}</li>
               ))}
             </ul>

@@ -1,0 +1,62 @@
+{
+  "seo": {
+    "title": "Cloud Management Services - DSRC",
+    "description": "Comprehensive cloud solutions covering DevOps, Cloud Infrastructure, IT Operations and Security Management."
+  },
+  "hero": {
+    "title": "Cloud Management Services",
+    "subtitle": "Learning more about DSRC can help manage your Cloud Infrastructure, covering operations, security, and cost-optimization."
+  },
+  "overview": {
+    "heading": "Eliminate on-premises servers and discover more space on your business floors",
+    "paragraphs": [
+      "At DSRC, we help businesses migrate, manage, and optimize their cloud infrastructure across leading platforms including Azure, AWS, and Google Cloud.",
+      "Adopt a risk-free transition to a scalable cloud platform, take advantage of cloud features and reduce your IT footprint, by moving your workloads into the cloud where resources, data, and applications can be utilized and managed more efficiently to reduce cost and improve operational efficiency.",
+      "Cloud migration and management services encompass a comprehensive set of practices and solutions that help businesses navigate the complexities of cloud computing, ensuring optimal performance, security, and cost-effectiveness.",
+      "We can help design, build, and manage comprehensive cloud solutions covering DevOps, Deployment, SysOps covering Cloud Infrastructure and IT Operations Management and Cloud Security Management."
+    ]
+  },
+  "services": [
+    {
+      "title": "Cloud Computing",
+      "items": [
+        "Cloud Migration Strategy & Planning",
+        "Multi-cloud & Hybrid Cloud Management",
+        "Cloud-native Application Development",
+        "Infrastructure as Code (IaC)",
+        "Container Orchestration (Kubernetes, Docker)",
+        "Cloud Cost Optimization & FinOps",
+        "Serverless Architecture Design"
+      ]
+    },
+    {
+      "title": "IT Operations Management",
+      "items": [
+        "24/7 Infrastructure Monitoring & Alerting",
+        "Incident Management & Resolution",
+        "Performance Optimization & Tuning",
+        "Backup, Disaster Recovery & Business Continuity",
+        "Patch Management & System Updates",
+        "Configuration Management & Automation",
+        "Service Level Management (SLA/SLO)"
+      ]
+    },
+    {
+      "title": "Cloud Security",
+      "items": [
+        "Identity & Access Management (IAM)",
+        "Security Information & Event Management (SIEM)",
+        "Vulnerability Assessment & Penetration Testing",
+        "Compliance Management (SOC2, GDPR, HIPAA)",
+        "Network Security & Firewall Management",
+        "Data Encryption & Key Management",
+        "Security Operations Center (SOC) Services"
+      ]
+    }
+  ],
+  "cta": {
+    "title": "Want to explore how DSRC can help your business?",
+    "subtitle": "Let's talk!",
+    "button": { "label": "Contact Us", "href": "/contact" }
+  }
+}

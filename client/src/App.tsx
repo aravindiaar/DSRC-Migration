@@ -7,6 +7,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Home from "@/pages/Home";
 import Services from "@/pages/Services";
+import ServiceDetail from "@/pages/ServiceDetail";
 import WhoWeAre from "@/pages/WhoWeAre";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
@@ -17,6 +18,18 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/services" component={Services} />
+      <Route path="/services/platform-product-development">
+        {() => <ServiceDetail slug="platform-product-development" />}
+      </Route>
+      <Route path="/services/application-services">
+        {() => <ServiceDetail slug="application-services" />}
+      </Route>
+      <Route path="/services/digital-transformation">
+        {() => <ServiceDetail slug="digital-transformation" />}
+      </Route>
+      <Route path="/services/cloud-management">
+        {() => <ServiceDetail slug="cloud-management" />}
+      </Route>
       <Route path="/who-we-are" component={WhoWeAre} />
       <Route path="/careers" component={Careers} />
       <Route path="/contact" component={Contact} />

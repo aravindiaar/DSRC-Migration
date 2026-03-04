@@ -1,0 +1,62 @@
+{
+  "seo": {
+    "title": "Who We Are - DSRC | About Us",
+    "description": "Learn about DSRC's five decades of engineering excellence and innovation."
+  },
+  "hero": {
+    "title": "Who we are",
+    "subtitle": "Engineering strength and agile innovation, delivering excellence for over five decades."
+  },
+  "intro": {
+    "paragraphs": [
+      "DSRC is a global technology solutions company with over 50 years of engineering excellence, headquartered in Chennai, India, with offices in the United States, United Kingdom, and the Netherlands.",
+      "Founded in 1973, DSRC has evolved from a pioneering software company into a trusted global partner for businesses seeking to innovate and scale with confidence. We provide Consulting & Technical Advisory, Custom Software Development, Application Modernisation, and Cloud Management Services.",
+      "Our 350+ skilled engineers work closely with clients to design and develop secure, scalable, and future-ready digital solutions tailored to their goals."
+    ]
+  },
+  "vision": {
+    "title": "Our Vision",
+    "text": "To be the unrivaled partner of choice for organisations globally, delivering innovative and transformative technology solutions that drive sustainable growth and competitive advantage."
+  },
+  "mission": {
+    "title": "Our Mission",
+    "text": "To provide scalable, cost-effective, and high-quality development teams and project management capabilities that empower our clients to achieve their technology objectives and business aspirations."
+  },
+  "difference": {
+    "title": "The DSRC Difference",
+    "subtitle": "With over 50 years of experience and 350+ skilled engineers, DSRC delivers innovative technology solutions to global enterprises across multiple continents.",
+    "stats": [
+      { "value": "50+", "label": "Years of Innovation" },
+      { "value": "350+", "label": "Skilled Engineers" },
+      { "value": "5", "label": "Global Offices" },
+      { "value": "100+", "label": "Enterprise Clients" }
+    ]
+  },
+  "companyOverview": {
+    "title": "Company Overview",
+    "text": "With over 50 years of innovation and client partnerships, DSRC has built a legacy of delivering enterprise-grade technology solutions that drive meaningful business outcomes. Our journey from a Chennai-based software company to a global technology partner reflects our commitment to engineering excellence, continuous innovation, and client success."
+  },
+  "values": {
+    "title": "Our Values",
+    "items": [
+      { "title": "Ambitious & Entrepreneurial", "description": "We set bold goals and pursue them with relentless determination, fostering an entrepreneurial spirit that drives breakthrough solutions." },
+      { "title": "Insightful & Experienced", "description": "With five decades of expertise, we bring deep industry knowledge and technical insight to every engagement." },
+      { "title": "Ethical, Honest & Professional", "description": "Integrity is at the core of everything we do. We maintain the highest standards of professionalism and ethical conduct." },
+      { "title": "Responsive & Responsible", "description": "We are committed to being responsive to our clients' needs while taking responsibility for delivering quality outcomes." },
+      { "title": "Innovation", "description": "We continuously explore new technologies and methodologies to deliver cutting-edge solutions that keep our clients ahead." },
+      { "title": "Disruptive", "description": "We challenge the status quo and embrace disruptive thinking to create breakthrough solutions that redefine possibilities." },
+      { "title": "Collaborative", "description": "We believe in the power of teamwork, fostering strong partnerships with our clients and within our teams." },
+      { "title": "Hardworking", "description": "We are dedicated to delivering excellence through hard work, discipline, and an unwavering commitment to quality." }
+    ]
+  },
+  "locations": {
+    "title": "Our Offices Worldwide",
+    "offices": [
+      { "city": "Chennai, India", "role": "Corporate Headquarters", "address": "11 Smith Road, 'Kasturi Towers', Chennai 600002" },
+      { "city": "Santa Clara, CA", "role": "US West Coast Office", "address": "4677 Old Ironsides Drive, Suite# 250, Santa Clara, CA 95054" },
+      { "city": "Parsippany, NJ", "role": "US East Coast Office", "address": "2011 Route 46, Waterview Plaza, Suite 310, Parsippany, NJ 07054" },
+      { "city": "London, UK", "role": "United Kingdom", "address": "10 Orange Street, Haymarket, London WC2H 7DQ" },
+      { "city": "Amsterdam, NL", "role": "Netherlands", "address": "Herengracht 449a 1017 BR, Amsterdam" }
+    ]
+  }
+}

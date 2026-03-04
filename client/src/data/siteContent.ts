@@ -1,10 +1,8 @@
 export const siteContent = {
   global: {
     siteName: "DSRC",
-    logo: "DSRC",
-    tagline: "Engineering Excellence Since 1969",
+    logoUrl: "/images/dsrc-logo.png",
     nav: [
-      { label: "Home", href: "/" },
       {
         label: "Services",
         href: "/services",
@@ -16,24 +14,42 @@ export const siteContent = {
         ],
       },
       {
+        label: "Insights",
+        href: "/services",
+        children: [
+          { label: "Technology Expertise", href: "/services" },
+          { label: "Engagement Models", href: "/services" },
+          { label: "Case Studies", href: "/services" },
+          { label: "Client Testimonials", href: "/#testimonials" },
+          { label: "Industry Experience", href: "/services" },
+        ],
+      },
+      {
         label: "About",
         href: "/who-we-are",
         children: [
           { label: "Who We Are", href: "/who-we-are" },
           { label: "The DSRC Difference", href: "/who-we-are#difference" },
-          { label: "Our Values", href: "/who-we-are#values" },
           { label: "Global Locations", href: "/who-we-are#locations" },
         ],
       },
-      { label: "Careers", href: "/careers" },
-      { label: "Contact", href: "/contact" },
+      {
+        label: "Careers",
+        href: "/careers",
+        children: [
+          { label: "Working at DSRC", href: "/careers" },
+          { label: "Job Opportunities", href: "/careers#opportunities" },
+          { label: "Career Enquiry", href: "/contact" },
+        ],
+      },
     ],
     footer: {
       quickLinks: [
-        { label: "Who We Are", href: "/who-we-are" },
+        { label: "We are DSRC!", href: "/who-we-are" },
         { label: "Services", href: "/services" },
         { label: "Careers", href: "/careers" },
         { label: "Contact Us", href: "/contact" },
+        { label: "Sitemap", href: "/" },
       ],
       headquarters: {
         title: "Global Headquarters",
@@ -49,10 +65,10 @@ export const siteContent = {
         "Amsterdam, Netherlands",
       ],
       salesPhones: [
-        { region: "United Kingdom", phone: "+44 2078703112" },
-        { region: "Ireland", phone: "+353 818687435" },
-        { region: "Europe", phone: "+31 20 808 2165" },
-        { region: "United States & Canada", phone: "+1 201 534 6351" },
+        { region: "United Kingdom", phone: "+44 2078703112", flag: "🇬🇧" },
+        { region: "Ireland", phone: "+353 818687435", flag: "🇮🇪" },
+        { region: "Europe", phone: "+31 20 808 2165", flag: "🇪🇺" },
+        { region: "United States & Canada", phone: "+1 201 534 6351", flag: "🇺🇸" },
       ],
       copyright: "DSRC 2024. All Rights Reserved.",
       social: {
@@ -66,109 +82,111 @@ export const siteContent = {
         title: "DSRC - Engineer the Future | Software Engineering & Digital Transformation",
         description: "Collaborate with passionate technologists building next-gen platforms for global enterprises. Discover opportunities to innovate, learn, and excel.",
       },
-      hero: {
-        title: "Engineer the Future with DSRC",
-        subtitle: "Collaborate with passionate technologists building next-gen platforms for global enterprises. Discover opportunities to innovate, learn, and excel in a culture that values creativity and excellence.",
-        cta: { label: "Explore Services", href: "/services" },
-        secondaryCta: { label: "Contact Us", href: "/contact" },
-      },
+      heroSlides: [
+        {
+          title: "Modernise Legacy Systems & Embrace Future-Ready Technology",
+          subtitle: "Re-engineer legacy platforms, adopt microservices, APIs, cloud-containerisation and GenAI powered automation to boost performance and reduce tech-debt.",
+          cta: { label: "LEARN MORE...", href: "/services#digital" },
+          bgImage: "/images/hero-slide-1.webp",
+        },
+        {
+          title: "Engineer the Future with DSRC",
+          subtitle: "Collaborate with passionate technologists building next-gen platforms for global enterprises. Discover opportunities to innovate, learn, and excel in a culture that values creativity and excellence.",
+          cta: { label: "JOIN OUR TEAM", href: "/careers" },
+          bgImage: "/images/hero-slide-4.webp",
+        },
+        {
+          title: "Partner with DSRC to Engineer Cloud-Native Platforms",
+          subtitle: "Partner with DSRC to engineer cloud-native platforms and products that align with your business strategy, delivering agility, scalability and sustainability.",
+          cta: { label: "LEARN MORE...", href: "/services#cloud" },
+          bgImage: "/images/hero-slide-3.webp",
+        },
+      ],
       whoWeAre: {
         sectionTitle: "WHO WE ARE",
-        heading: "Engineering Strength. Agile Innovation.",
-        points: [
-          {
-            title: "Five Decades of Expertise",
-            description: "With over 50 years of experience, DSRC has been at the forefront of software engineering, delivering innovative solutions to global enterprises.",
-          },
-          {
-            title: "Bringing Ideas to Life",
-            description: "We transform complex business challenges into elegant technological solutions, bridging the gap between vision and execution.",
-          },
-          {
-            title: "350+ Skilled Engineers",
-            description: "Our talented workforce of over 350 skilled engineers brings deep technical expertise and creative problem-solving to every project.",
-          },
-          {
-            title: "Quality & Digital Transformation",
-            description: "We are committed to delivering excellence through rigorous quality standards and cutting-edge digital transformation services.",
-          },
+        paragraphs: [
+          "DSRC blends proven engineering strength with agile innovation to help organisations modernise, build smarter, and achieve measurable business impact.",
+          "With over five decades of technology and engineering expertise, DSRC serves as a trusted global partner for businesses seeking to innovate and scale with confidence.",
+          "We bring ideas to life through modern technologies, flexible engagement models, and a collaborative approach that ensures clarity, agility, and dependable delivery.",
+          "Our 350+ skilled engineers work closely with clients to design and develop secure, scalable, and future-ready digital solutions tailored to their goals.",
+          "Focused on quality, performance, and long-term value, DSRC enables startups, SMEs, and enterprises to accelerate digital transformation and achieve meaningful outcomes.",
+          "We remain committed to professionalism, client satisfaction, and continuous innovation in everything we do.",
         ],
-        cta: { label: "Learn More About Us", href: "/who-we-are" },
+        cta: { label: "Learn More", href: "/who-we-are" },
       },
       services: {
         sectionTitle: "WHAT WE CAN DO FOR YOU",
-        heading: "Comprehensive Technology Solutions",
+        subtitle: "We deliver agile, cost-effective technology solutions tailored for start-ups, scale-ups, and mid-sized businesses!",
         items: [
           {
-            title: "Platform & Product Development",
-            description: "Delivering end-to-end software product engineering services that take your ideas from concept to market-ready solutions.",
-            icon: "code",
+            title: "PLATFORM & PRODUCT DEVELOPMENT",
+            description: "Deliver end-to-end platform and product development through agile, scalable teams — expanding your capabilities cost-effectively, accelerating time-to-market, and keeping you ahead of the competition.",
+            image: "/images/service-platform.webp",
             href: "/services#platform",
           },
           {
-            title: "Application Services",
-            description: "Empowering enterprise businesses with modern Web, Mobile, and cross-platform applications built with modern technologies.",
-            icon: "app",
+            title: "APPLICATION SERVICES",
+            description: "Unleashing innovation, agility and advancement, empowering Enterprise businesses with modern Web, Mobile, and cross-platform applications built with state-of-the-art technologies and frameworks.",
+            image: "/images/service-application.webp",
             href: "/services#application",
           },
           {
-            title: "Digital Transformation",
-            description: "Modernizing legacy systems and applications helping clients in their digital transformation journey.",
-            icon: "transform",
+            title: "DIGITAL TRANFORMATION SERVICES",
+            description: "Helping businesses in the digital transformation journey, modernizing their IT business systems and applications, process, and the way their workforce operates internally and how they deal with their customers.",
+            image: "/images/service-digital.jpg",
             href: "/services#digital",
           },
           {
-            title: "Cloud Management",
-            description: "Comprehensive cloud solutions covering Cloud Infrastructure Management, IT Operations Management and Cloud Security Management.",
-            icon: "cloud",
+            title: "CLOUD MANAGEMENT SERVICES",
+            description: "We can help design, build, and manage comprehensive cloud solutions covering DevOps, Deployment, SysOps covering Cloud Infrastructure and IT Operations Management and Cloud Security Management!",
+            image: "/images/service-cloud.webp",
             href: "/services#cloud",
           },
         ],
       },
+      customers: {
+        logos: [
+          "/images/customer-1.png",
+          "/images/customer-2.png",
+          "/images/customer-3.png",
+          "/images/customer-4.png",
+          "/images/customer-5.png",
+        ],
+      },
       testimonials: {
         sectionTitle: "WHAT OUR CLIENTS SAY",
-        heading: "Client Testimonials",
         items: [
           {
-            quote: "DSRC has been an invaluable technology partner, consistently delivering high-quality solutions that have transformed our digital infrastructure.",
-            author: "Technology Director",
-            company: "Global Enterprise Client",
+            quote: "Working with the DSRC team on the NestLink project has been an excellent experience from start to finish. The team demonstrated great professionalism, creativity, and a strong commitment to quality throughout the engagement. DSRC's collaborative approach and technical expertise have been instrumental in delivering a robust and well-designed product that aligns with our vision. We look forward to continuing our partnership as we take NestLink to the next stage of development.",
+            author: "Susan Ashworth",
+            role: "Product owner at Watkins Property Ventures, United Kingdom",
+            image: "/images/testimonial-1.jpg",
           },
           {
-            quote: "Their team's technical expertise and commitment to deadlines have made them our go-to partner for all software development needs.",
-            author: "VP of Engineering",
-            company: "Fortune 500 Company",
+            quote: "DSRC has been a big part of our success here at Keyhouse. The team at DSRC has been instrumental in development and design for many projects here at Keyhouse. Their level of ownership and expertise provides a very trusting experience and engagement. DSRC is a valuable and trusted partner in our business!",
+            author: "Stephen Keogh",
+            role: "CEO & Technical Director at Dye & Durham, Ireland",
+            image: "/images/testimonial-2.png",
           },
           {
-            quote: "Working with DSRC has accelerated our digital transformation by years. Their agile approach and deep domain knowledge sets them apart.",
-            author: "CTO",
-            company: "Leading Financial Services Firm",
+            quote: "We've had the opportunity to work with DSRC for several years across a diverse range of projects. Their team consistently demonstrates deep technical expertise, delivering solutions that bring meaningful value to our work. Professional, friendly, approachable, and proactive, they are always willing to go the extra mile. DSRC has been a trusted and collaborative partner, and we sincerely appreciate their continued commitment and support.",
+            author: "Bashar Nassar",
+            role: "VP of Engineering at SystemWeaver, Sweden",
+            image: "/images/testimonial-3.png",
           },
         ],
       },
       careers: {
         sectionTitle: "CAREERS AT DSRC",
-        heading: "Join Our Team of Innovators",
-        description: "We are always looking for exceptional talent to join our team. At DSRC, you'll find opportunities to innovate, grow, and succeed in a collaborative environment that values creativity and excellence.",
-        highlights: [
-          "Challenging work environment with cutting-edge technologies",
-          "Competitive compensation and benefits",
-          "Accelerated career growth and overseas opportunities",
-          "Core teams with 15+ years average experience",
-        ],
+        heading: "Are you creative, passionate, entrepreneurial and can solve problems with a little ingenuity?",
+        description: "We are constantly looking for top talent, come let's work together and support in our endeavour to delight customers with scalable and performance-driven, innovative, next-generation software solution.",
         cta: { label: "View Opportunities", href: "/careers" },
       },
-      stats: [
-        { value: "50+", label: "Years of Experience" },
-        { value: "350+", label: "Skilled Engineers" },
-        { value: "5", label: "Global Offices" },
-        { value: "100+", label: "Enterprise Clients" },
-      ],
     },
     contact: {
       seo: {
         title: "Contact DSRC - Get in Touch",
-        description: "Contact DSRC for your software engineering and digital transformation needs. Offices in India, US, UK, and Netherlands.",
+        description: "Contact DSRC for your software engineering and digital transformation needs.",
       },
       hero: {
         title: "Contact Us",

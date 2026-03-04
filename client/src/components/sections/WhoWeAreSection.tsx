@@ -1,61 +1,45 @@
 import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Lightbulb, Users, Award, Zap } from "lucide-react";
-
-const iconMap: Record<number, typeof Lightbulb> = {
-  0: Award,
-  1: Lightbulb,
-  2: Users,
-  3: Zap,
-};
+import { ArrowRight } from "lucide-react";
 
 interface WhoWeAreProps {
   sectionTitle: string;
-  heading: string;
-  points: { title: string; description: string }[];
+  paragraphs: string[];
   cta: { label: string; href: string };
 }
 
-export default function WhoWeAreSection({ sectionTitle, heading, points, cta }: WhoWeAreProps) {
+export default function WhoWeAreSection({ sectionTitle, paragraphs, cta }: WhoWeAreProps) {
   return (
-    <section data-testid="who-we-are-section" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">
-            {sectionTitle}
-          </span>
-          <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
-            {heading}
-          </h2>
+    <section data-testid="who-we-are-section" className="py-16 lg:py-20 bg-white">
+      <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          data-testid="text-who-we-are-title"
+          className="text-center text-2xl md:text-3xl font-bold text-[#0033a0] mb-10"
+          style={{ fontFamily: "'Open Sans', serif" }}
+        >
+          {sectionTitle}
+        </h2>
+
+        <div className="space-y-5">
+          {paragraphs.map((p, idx) => (
+            <p
+              key={idx}
+              data-testid={`who-we-are-p-${idx}`}
+              className="text-[15px] text-gray-700 leading-[1.8]"
+            >
+              {p}
+            </p>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {points.map((point, idx) => {
-            const Icon = iconMap[idx] || Lightbulb;
-            return (
-              <div
-                key={idx}
-                data-testid={`who-we-are-point-${idx}`}
-                className="group flex gap-5 p-6 rounded-md bg-muted/30 border border-transparent hover:border-border transition-all duration-300"
-              >
-                <div className="shrink-0 w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-2">{point.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{point.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-12 text-center">
+        <div className="mt-10 flex justify-center">
           <Link href={cta.href}>
-            <Button data-testid="button-who-we-are-cta" variant="outline">
+            <span
+              data-testid="link-who-we-are-more"
+              className="inline-flex items-center gap-2 text-[15px] text-gray-500 hover:text-[#0033a0] transition-colors cursor-pointer"
+            >
+              <ArrowRight className="w-5 h-5 border border-gray-300 rounded-full p-0.5" />
               {cta.label}
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            </span>
           </Link>
         </div>
       </div>

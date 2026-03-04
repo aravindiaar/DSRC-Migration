@@ -1,50 +1,50 @@
 import { Link } from "wouter";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { SiLinkedin } from "react-icons/si";
+import { siteContent } from "@/data/siteContent";
 
 interface CareersProps {
   sectionTitle: string;
   heading: string;
   description: string;
-  highlights: string[];
   cta: { label: string; href: string };
 }
 
-export default function CareersSection({ sectionTitle, heading, description, highlights, cta }: CareersProps) {
+export default function CareersSection({ sectionTitle, heading, description, cta }: CareersProps) {
   return (
-    <section data-testid="careers-section" className="py-24 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">
-              {sectionTitle}
-            </span>
-            <h2 className="mt-3 text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
-              {heading}
-            </h2>
-            <p className="mt-6 text-muted-foreground leading-relaxed">{description}</p>
-            <div className="mt-8">
-              <Link href={cta.href}>
-                <Button data-testid="button-careers-cta">
-                  {cta.label}
-                  <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-            </div>
-          </div>
+    <section data-testid="careers-section" className="py-16 lg:py-20 bg-white">
+      <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2
+          className="text-center text-2xl md:text-3xl font-bold text-[#0033a0] mb-10"
+          style={{ fontFamily: "'Open Sans', serif" }}
+        >
+          {sectionTitle}
+        </h2>
 
-          <div className="space-y-4">
-            {highlights.map((h, idx) => (
-              <div
-                key={idx}
-                data-testid={`career-highlight-${idx}`}
-                className="flex items-start gap-4 p-5 rounded-md bg-muted/30 border border-transparent hover:border-border transition-all"
-              >
-                <CheckCircle className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                <span className="text-sm text-foreground/80 leading-relaxed">{h}</span>
-              </div>
-            ))}
-          </div>
+        <p className="text-[15px] text-gray-700 leading-[1.8] mb-4 font-semibold">
+          {heading}
+        </p>
+        <p className="text-[15px] text-gray-600 leading-[1.8] mb-8">
+          {description}
+        </p>
+
+        <div className="flex items-center gap-6">
+          <Link href={cta.href}>
+            <span
+              data-testid="link-careers-cta"
+              className="inline-block px-6 py-2.5 border border-[#0033a0] text-[#0033a0] text-sm font-medium rounded-sm hover:bg-[#0033a0] hover:text-white transition-all duration-300 cursor-pointer"
+            >
+              {cta.label}
+            </span>
+          </Link>
+          <a
+            href={siteContent.global.footer.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="link-careers-linkedin"
+            className="text-gray-400 hover:text-[#0033a0] transition-colors"
+          >
+            <SiLinkedin className="w-6 h-6" />
+          </a>
         </div>
       </div>
     </section>

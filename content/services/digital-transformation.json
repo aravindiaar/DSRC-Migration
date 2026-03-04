@@ -1,11 +1,11 @@
 {
   "seo": {
     "title": "Digital Transformation Services - DSRC",
-    "description": "Helping businesses modernize legacy systems and embrace digital transformation."
+    "description": "Enabling enterprises to modernise, scale, and compete with confidence."
   },
   "hero": {
     "title": "Digital Transformation Services",
-    "subtitle": "Accelerating enterprise modernisation through intelligent technology adoption, process re-engineering, and scalable digital solutions."
+    "subtitle": "Enabling Enterprises to Modernise, Scale, and Compete with Confidence"
   },
   "overview": {
     "paragraphs": [
@@ -16,22 +16,22 @@
   },
   "capabilities": {
     "title": "Digital Transformation Capabilities",
+    "subtitle": "DSRC delivers transformation across critical enterprise domains:",
     "items": [
-      "Application modernisation & legacy migration",
-      "Cloud-native re-platforming & containerisation",
-      "Data & analytics transformation",
-      "Process automation & intelligent workflows",
-      "API-first & microservices architecture",
-      "Enterprise integration & interoperability",
-      "Digital experience platforms",
-      "Cybersecurity & compliance modernisation"
+      { "title": "App Modernisation", "description": "Re-engineer legacy applications into modern, scalable, cloud-ready systems." },
+      { "title": "Cloud Transformation", "description": "Migrate, modernise and optimise workloads across Azure, AWS and GCP." },
+      { "title": "BI & Data Management", "description": "Unlock insights through modern data platforms, analytics and visualisation." },
+      { "title": "AI & Machine Learning", "description": "Embed intelligent automation and predictive capabilities across the enterprise." },
+      { "title": "Integration & Platform Engineering", "description": "Connect systems, data and processes through API-first and microservices architectures." },
+      { "title": "Industrial IoT & Connected Systems", "description": "Design and deploy IoT solutions for manufacturing, logistics and industrial operations." },
+      { "title": "AR/VR & Immersive Technologies", "description": "Create immersive experiences for training, visualisation and customer engagement." }
     ]
   },
   "approach": {
     "title": "Our Approach",
-    "description": "We follow a structured, phased approach to transformation — ensuring alignment with business objectives, measurable outcomes, and minimal disruption.",
     "phases": [
       {
+        "number": "1",
         "title": "Assess & Define",
         "description": "Current-state analysis, stakeholder alignment, and transformation roadmap definition.",
         "items": [
@@ -42,6 +42,7 @@
         ]
       },
       {
+        "number": "2",
         "title": "Modernise & Build",
         "description": "Execution of prioritised initiatives using agile, cloud-native engineering practices.",
         "items": [
@@ -53,6 +54,7 @@
         ]
       },
       {
+        "number": "3",
         "title": "Optimise, Automate & Scale",
         "description": "Continuous improvement, automation, and scaling of digital capabilities.",
         "items": [
@@ -106,7 +108,7 @@
   },
   "cta": {
     "title": "Transform with Confidence",
-    "subtitle": "Partner with DSRC to modernise your enterprise, unlock new capabilities, and drive sustainable digital growth.",
+    "subtitle": "DSRC works alongside enterprise technology leaders to simplify complexity, modernise at pace, and deliver sustainable digital transformation outcomes.",
     "button": { "label": "Contact Us", "href": "/contact" }
   }
 }

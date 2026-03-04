@@ -19,28 +19,22 @@
     "title": "Expertise & Capabilities",
     "items": [
       { "title": "Web Application Development", "description": "Accelerate innovation & growth, delivering next generation applications!" },
-      { "title": "Mobile App Development", "description": "Native Apps or Hybrid Apps? We can help you build native and truly cross-platform enterprise B2B and B2C mobile applications and mobility solutions." },
+      { "title": "Mobile App Development", "description": "We can help you build native and truly cross-platform enterprise B2B and B2C mobile applications and mobility solutions." },
       { "title": "Application Modernization", "description": "Reimagine, Rearchitect and Modernize legacy software systems transforming them into a modern software system with scalable performance and usability." },
       { "title": "Support & Maintenance", "description": "Next-gen, application support and maintenance services to manage product roadmap, bug and issue management, and support." },
       { "title": "DevOps", "description": "Build software faster and deploy them rapidly, and securely by employing proven DevOps plan, strategy and frameworks." },
-      { "title": "Digital API Services", "description": "We can help you build native and truly cross-platform enterprise B2B and B2C mobile applications and mobility solutions." },
+      { "title": "Digital API Services", "description": "Design, develop and manage APIs that connect applications, data and services across the enterprise ecosystem." },
       { "title": "UI/UX Development", "description": "Vast front-end development experience implementing interactive and visual design principles for a positive and cohesive user experience." },
-      { "title": "SQA & Test Automation", "description": "Enabling enterprises to move their digital assets and application workload to a modern cloud platform!" }
+      { "title": "SQA & Test Automation", "description": "Comprehensive quality assurance and test automation services to ensure reliable, high-performing applications." }
     ]
   },
   "insights": {
-    "engagementModels": {
-      "title": "Engagement Models",
-      "description": "Experience seamless collaboration, accelerated innovation and intensive control on software development projects using flexible engagement models!"
-    },
-    "technologyExpertise": {
-      "title": "Technology Expertise",
-      "description": "DSRC brings front-end, back-end and full-stack technology expertise and capabilities across a wide variety of technologies, platforms and skill-sets."
-    },
-    "industryExperience": {
-      "title": "Industry Experience",
-      "description": "Delivering custom software solutions across diverse industry verticals, seamlessly integrating technology expertise with our domain experience, driving innovation and transformation."
-    }
+    "title": "Insights",
+    "items": [
+      { "title": "Engagement Models", "description": "Experience seamless collaboration, accelerated innovation and intensive control on software development projects using flexible engagement models!" },
+      { "title": "Technology Expertise", "description": "DSRC brings front-end, back-end and full-stack technology expertise and capabilities across a wide variety of technologies, platforms and skill-sets." },
+      { "title": "Industry Experience", "description": "Delivering custom software solutions across diverse industry verticals, seamlessly integrating technology expertise with our domain experience, driving innovation and transformation." }
+    ]
   },
   "cta": {
     "title": "Want to explore how DSRC can help your business?",

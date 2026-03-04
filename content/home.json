@@ -5,21 +5,30 @@
   },
   "heroSlides": [
     {
-      "title": "Modernise Legacy Systems & Embrace Future-Ready Technology",
+      "title": "Modernise Legacy Systems & Embrace Future-Ready Technology ",
       "subtitle": "Re-engineer legacy platforms, adopt microservices, APIs, cloud-containerisation and GenAI powered automation to boost performance and reduce tech-debt.",
-      "cta": { "label": "LEARN MORE...", "href": "/services/digital-transformation" },
+      "cta": {
+        "label": "LEARN MORE...",
+        "href": "/services/digital-transformation"
+      },
       "bgImage": "/images/hero-slide-1.webp"
     },
     {
       "title": "Engineer the Future with DSRC",
       "subtitle": "Collaborate with passionate technologists building next-gen platforms for global enterprises. Discover opportunities to innovate, learn, and excel in a culture that values creativity and excellence.",
-      "cta": { "label": "JOIN OUR TEAM", "href": "/careers" },
+      "cta": {
+        "label": "JOIN OUR TEAM",
+        "href": "/careers"
+      },
       "bgImage": "/images/hero-slide-4.webp"
     },
     {
       "title": "Partner with DSRC to Engineer Cloud-Native Platforms",
       "subtitle": "Partner with DSRC to engineer cloud-native platforms and products that align with your business strategy, delivering agility, scalability and sustainability.",
-      "cta": { "label": "LEARN MORE...", "href": "/services/cloud-management" },
+      "cta": {
+        "label": "LEARN MORE...",
+        "href": "/services/cloud-management"
+      },
       "bgImage": "/images/hero-slide-3.webp"
     }
   ],
@@ -33,7 +42,10 @@
       "Focused on quality, performance, and long-term value, DSRC enables startups, SMEs, and enterprises to accelerate digital transformation and achieve meaningful outcomes.",
       "We remain committed to professionalism, client satisfaction, and continuous innovation in everything we do."
     ],
-    "cta": { "label": "Learn More", "href": "/who-we-are" }
+    "cta": {
+      "label": "Learn More",
+      "href": "/who-we-are"
+    }
   },
   "services": {
     "sectionTitle": "WHAT WE CAN DO FOR YOU",
@@ -101,6 +113,9 @@
     "sectionTitle": "CAREERS AT DSRC",
     "heading": "Are you creative, passionate, entrepreneurial and can solve problems with a little ingenuity?",
     "description": "We are constantly looking for top talent, come let's work together and support in our endeavour to delight customers with scalable and performance-driven, innovative, next-generation software solution.",
-    "cta": { "label": "View Opportunities", "href": "/careers" }
+    "cta": {
+      "label": "View Opportunities",
+      "href": "/careers"
+    }
   }
 }

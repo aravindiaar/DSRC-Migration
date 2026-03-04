@@ -1,13 +1,17 @@
 {
   "seo": {
-    "title": "Application Development & Modernization - DSRC",
+    "title": "Application Development & Modernization - DSRC ",
     "description": "Enterprise application services — modernizing, integrating, and managing mission-critical applications."
   },
   "hero": {
     "title": "APPLICATION DEVELOPMENT & MODERNIZATION",
     "subtitle": "Modernizing, integrating, and managing mission-critical enterprise applications!",
     "bgImage": "/images/hero-slide-1.webp",
-    "breadcrumbs": ["DSRC", "Services", "Application Development & Modernization"]
+    "breadcrumbs": [
+      "DSRC",
+      "Services",
+      "Application Development & Modernization"
+    ]
   },
   "ctaVariant": "white",
   "overview": {
@@ -24,23 +28,50 @@
     "paragraphs": [
       {
         "segments": [
-          { "text": "At DSRC, we help enterprises and mid-sized businesses build and customize enterprise applications to drive efficiency, scalability, and digital transformation. Our ", "bold": false },
-          { "text": "Enterprise Application Services", "bold": true },
-          { "text": " are designed to extend the life and value of existing systems while ensuring they evolve in step with business needs.", "bold": false }
+          {
+            "text": "At DSRC, we help enterprises and mid-sized businesses build and customize enterprise applications to drive efficiency, scalability, and digital transformation. Our ",
+            "bold": false
+          },
+          {
+            "text": "Enterprise Application Services",
+            "bold": true
+          },
+          {
+            "text": " are designed to extend the life and value of existing systems while ensuring they evolve in step with business needs.",
+            "bold": false
+          }
         ]
       },
       {
         "segments": [
-          { "text": "From ", "bold": false },
-          { "text": "custom enterprise applications, ERP/CRM extensions, and legacy platform modernization", "bold": true },
-          { "text": " to ", "bold": false },
-          { "text": "system integrations, cloud migration, and ongoing support", "bold": true },
-          { "text": ", we provide comprehensive services that enhance performance and reduce operational risk.", "bold": false }
+          {
+            "text": "From ",
+            "bold": false
+          },
+          {
+            "text": "custom enterprise applications, ERP/CRM extensions, and legacy platform modernization",
+            "bold": true
+          },
+          {
+            "text": " to ",
+            "bold": false
+          },
+          {
+            "text": "system integrations, cloud migration, and ongoing support",
+            "bold": true
+          },
+          {
+            "text": ", we provide comprehensive services that enhance performance and reduce operational risk.",
+            "bold": false
+          }
         ]
       },
       {
         "segments": [
-          { "text": "With 50+ years of engineering excellence, we partner with organizations to transform complex legacy systems into agile, future-ready solutions—empowering teams to operate smarter, faster, and with greater resilience.", "bold": false }
+          {
+            "text": "With 50+ years of engineering excellence, we partner with organizations to transform complex legacy systems into agile, future-ready solutions—empowering teams to operate smarter, faster, and with greater resilience.",
+            "bold": false
+          }
         ]
       }
     ]
@@ -97,25 +128,37 @@
         "title": "Engagement Models",
         "description": "Experience seamless collaboration, accelerated innovation and intensive control on software development projects using flexible engagement models!",
         "icon": "briefcase",
-        "link": { "label": "Learn More", "href": "/contact" }
+        "link": {
+          "label": "Learn More",
+          "href": "/contact"
+        }
       },
       {
         "title": "Technology Expertise",
         "description": "DSRC brings front-end, back-end and full-stack technology expertise and capabilities across a wide variety of technologies, platforms and skill-sets.",
         "icon": "thumbs-up",
-        "link": { "label": "Learn More", "href": "/contact" }
+        "link": {
+          "label": "Learn More",
+          "href": "/contact"
+        }
       },
       {
         "title": "Industry Experience",
         "description": "Delivering custom software solutions across diverse industry verticals, seamlessly integrating technology expertise with our domain experience, driving innovation and transformation.",
         "icon": "star",
-        "link": { "label": "Learn More", "href": "/contact" }
+        "link": {
+          "label": "Learn More",
+          "href": "/contact"
+        }
       }
     ]
   },
   "cta": {
     "title": "Want to explore how DSRC can help your business? Let's talk!",
     "subtitle": "",
-    "button": { "label": "Contact Us", "href": "/contact" }
+    "button": {
+      "label": "Contact Us",
+      "href": "/contact"
+    }
   }
 }

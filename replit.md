@@ -58,6 +58,20 @@ Corporate website for **DSRC** (Data Software Research Company), a faithful recr
 - CMS API routes in `server/routes.ts`
 - Vite dev middleware in development
 
+### Admin CMS Panel
+- Visual content editor at `/admin` — no separate server needed, runs within the existing app
+- Split-screen layout: editor form (left, 380px) + live site preview iframe (right)
+- Dark navy sidebar lists all editable content: 6 pages + 4 service detail pages
+- Features:
+  - Click any page in sidebar → loads its JSON fields into the editor form
+  - Edit text, images, lists, nested objects, list-of-objects (with add/remove)
+  - Preview iframe updates to show the selected page
+  - Save button → `PUT /api/content/*` endpoint → writes JSON file to disk
+  - "Unsaved changes" indicator, save confirmation
+- No external CMS account or API key required — fully self-hosted
+- Component: `client/src/pages/admin/AdminCMS.tsx`
+- TinaCMS schema reference: `tina/config.ts` (defines all 7 collections/fields)
+
 ### Design Matching dsrc.com
 - White navbar with DSRC logo image and navy blue "Let's Connect!" button
 - Hero: full-width image slider with left-aligned text, navigation arrows, dot indicators

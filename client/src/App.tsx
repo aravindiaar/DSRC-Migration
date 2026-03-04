@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -11,45 +11,55 @@ import ServiceDetail from "@/pages/ServiceDetail";
 import WhoWeAre from "@/pages/WhoWeAre";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
+import AdminCMS from "@/pages/admin/AdminCMS";
 import NotFound from "@/pages/not-found";
 
-function Router() {
+function SiteRouter() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/services" component={Services} />
-      <Route path="/services/platform-product-development">
-        {() => <ServiceDetail slug="platform-product-development" />}
-      </Route>
-      <Route path="/services/application-services">
-        {() => <ServiceDetail slug="application-services" />}
-      </Route>
-      <Route path="/services/digital-transformation">
-        {() => <ServiceDetail slug="digital-transformation" />}
-      </Route>
-      <Route path="/services/cloud-management">
-        {() => <ServiceDetail slug="cloud-management" />}
-      </Route>
-      <Route path="/who-we-are" component={WhoWeAre} />
-      <Route path="/careers" component={Careers} />
-      <Route path="/contact" component={Contact} />
-      <Route component={NotFound} />
-    </Switch>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/services" component={Services} />
+          <Route path="/services/platform-product-development">
+            {() => <ServiceDetail slug="platform-product-development" />}
+          </Route>
+          <Route path="/services/application-services">
+            {() => <ServiceDetail slug="application-services" />}
+          </Route>
+          <Route path="/services/digital-transformation">
+            {() => <ServiceDetail slug="digital-transformation" />}
+          </Route>
+          <Route path="/services/cloud-management">
+            {() => <ServiceDetail slug="cloud-management" />}
+          </Route>
+          <Route path="/who-we-are" component={WhoWeAre} />
+          <Route path="/careers" component={Careers} />
+          <Route path="/contact" component={Contact} />
+          <Route component={NotFound} />
+        </Switch>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
 function App() {
+  const [location] = useLocation();
+  const isAdmin = location.startsWith("/admin");
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-1">
-            <Router />
-          </main>
-          <Footer />
-        </div>
+        {isAdmin ? (
+          <Switch>
+            <Route path="/admin" component={AdminCMS} />
+          </Switch>
+        ) : (
+          <SiteRouter />
+        )}
       </TooltipProvider>
     </QueryClientProvider>
   );

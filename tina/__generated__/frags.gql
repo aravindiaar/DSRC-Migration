@@ -1,0 +1,410 @@
+fragment GlobalParts on Global {
+  __typename
+  siteName
+  logoUrl
+  nav {
+    __typename
+    label
+    href
+    children {
+      __typename
+      label
+      href
+    }
+  }
+  footer {
+    __typename
+    quickLinks {
+      __typename
+      label
+      href
+    }
+    headquarters {
+      __typename
+      title
+      company
+      address
+      phone
+      fax
+    }
+    offices
+    salesPhones {
+      __typename
+      region
+      phone
+      flag
+    }
+    copyright
+    social {
+      __typename
+      linkedin
+    }
+  }
+}
+
+fragment HomeParts on Home {
+  __typename
+  seo {
+    __typename
+    title
+    description
+  }
+  heroSlides {
+    __typename
+    title
+    subtitle
+    bgImage
+    cta {
+      __typename
+      label
+      href
+    }
+  }
+  whoWeAre {
+    __typename
+    sectionTitle
+    paragraphs
+    cta {
+      __typename
+      label
+      href
+    }
+  }
+  services {
+    __typename
+    sectionTitle
+    subtitle
+    items {
+      __typename
+      title
+      description
+      image
+      href
+    }
+  }
+  customers {
+    __typename
+    logos
+  }
+  testimonials {
+    __typename
+    sectionTitle
+    items {
+      __typename
+      quote
+      author
+      role
+      image
+    }
+  }
+  careers {
+    __typename
+    sectionTitle
+    heading
+    description
+    cta {
+      __typename
+      label
+      href
+    }
+  }
+}
+
+fragment ServicesParts on Services {
+  __typename
+  seo {
+    __typename
+    title
+    description
+  }
+  hero {
+    __typename
+    title
+    subtitle
+    bgImage
+    breadcrumbs
+  }
+  coreServices {
+    __typename
+    title
+    subtitle
+  }
+  insights {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+      icon
+      link {
+        __typename
+        label
+        href
+      }
+    }
+  }
+  caseStudies {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+      image
+    }
+  }
+  cta {
+    __typename
+    title
+    subtitle
+    button {
+      __typename
+      label
+      href
+    }
+  }
+}
+
+fragment WhoWeAreParts on WhoWeAre {
+  __typename
+  seo {
+    __typename
+    title
+    description
+  }
+  hero {
+    __typename
+    title
+    subtitle
+    bgImage
+    breadcrumbs
+  }
+  intro {
+    __typename
+    paragraphs
+  }
+  vision {
+    __typename
+    title
+    text
+  }
+  mission {
+    __typename
+    title
+    text
+  }
+  difference {
+    __typename
+    title
+    subtitle
+    image
+    stats {
+      __typename
+      value
+      label
+    }
+  }
+  companyOverview {
+    __typename
+    title
+    text
+  }
+  values {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+    }
+  }
+  locations {
+    __typename
+    title
+    offices {
+      __typename
+      city
+      country
+      flag
+    }
+  }
+}
+
+fragment CareersParts on Careers {
+  __typename
+  seo {
+    __typename
+    title
+    description
+  }
+  hero {
+    __typename
+    title
+    subtitle
+    bgImage
+    breadcrumbs
+  }
+  intro {
+    __typename
+    heading
+    subheading
+    question
+    answer
+    paragraphs
+  }
+  highlights {
+    __typename
+    title
+    description
+  }
+  workingAtDsrc {
+    __typename
+    title
+    sections {
+      __typename
+      title
+      description
+    }
+  }
+  cta {
+    __typename
+    title
+    subtitle
+    button {
+      __typename
+      label
+      href
+    }
+  }
+}
+
+fragment ContactParts on Contact {
+  __typename
+  seo {
+    __typename
+    title
+    description
+  }
+  hero {
+    __typename
+    title
+    subtitle
+    bgImage
+    breadcrumbs
+  }
+  intro {
+    __typename
+    heading
+    paragraph
+  }
+  tabs {
+    __typename
+    id
+    label
+    type
+    description
+    flag
+    company
+    address
+    phone
+    email
+    buttonLabel
+    formNote
+  }
+  offices {
+    __typename
+    title
+    company
+    address
+    phone
+    fax
+  }
+}
+
+fragment ServiceDetailParts on ServiceDetail {
+  __typename
+  seo {
+    __typename
+    title
+    description
+  }
+  hero {
+    __typename
+    title
+    subtitle
+    bgImage
+    breadcrumbs
+  }
+  ctaVariant
+  whyDsrc {
+    __typename
+    title
+    description
+    items {
+      __typename
+      title
+      icon
+    }
+  }
+  whyChoose {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+      icon
+    }
+  }
+  process {
+    __typename
+    title
+    steps {
+      __typename
+      title
+      description
+    }
+  }
+  expertise {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+      image
+    }
+  }
+  insights {
+    __typename
+    title
+    items {
+      __typename
+      title
+      description
+      icon
+      link {
+        __typename
+        label
+        href
+      }
+    }
+  }
+  caseStudies {
+    __typename
+    title
+    description
+    image
+  }
+  cta {
+    __typename
+    title
+    subtitle
+    button {
+      __typename
+      label
+      href
+    }
+  }
+}

@@ -4,8 +4,10 @@
     "description": "Explore career opportunities at DSRC. We're constantly seeking exceptional talent."
   },
   "hero": {
-    "title": "Careers",
-    "subtitle": "Looking for a new challenge? At DSRC, we offer a wide range of career options and an opportunity to work in a vibrant work environment!"
+    "title": "CAREERS",
+    "subtitle": "Looking for a new challenge? At DSRC, we offer a wide range of career options and an opportunity to work in a vibrant work environment!",
+    "bgImage": "/images/hero-slide-1.webp",
+    "breadcrumbs": ["DSRC", "Careers"]
   },
   "intro": {
     "heading": "Take your career to new heights",

@@ -1,6 +1,7 @@
 import { useHead } from "@/hooks/use-head";
 import { usePageContent } from "@/lib/content";
 import HeroSection from "@/components/sections/HeroSection";
+import CTASection from "@/components/sections/CTASection";
 import { MapPin } from "lucide-react";
 
 export default function WhoWeAre() {
@@ -24,6 +25,9 @@ export default function WhoWeAre() {
       <HeroSection
         title={page.hero.title}
         subtitle={page.hero.subtitle}
+        variant="dark"
+        bgImage={page.hero.bgImage}
+        breadcrumbs={page.hero.breadcrumbs}
       />
 
       <section className="py-16 bg-white">
@@ -46,34 +50,36 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      <section id="difference" className="py-16 bg-[#f5f5f5]">
+      <section id="difference" className="py-16 bg-[#f0f4fa]">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-4">{page.difference.title}</h2>
-          <p className="text-center text-[15px] text-gray-600 max-w-2xl mx-auto mb-10">
-            {page.difference.subtitle}
-          </p>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {page.difference.stats.map((stat: any, idx: number) => (
-              <div key={idx} className="text-center py-6 px-4 bg-white rounded border border-gray-200">
-                <div className="text-3xl font-bold text-[#0033a0]">{stat.value}</div>
-                <div className="mt-2 text-sm text-gray-500">{stat.label}</div>
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {page.difference.image && (
+              <div className="shrink-0">
+                <img
+                  src={page.difference.image}
+                  alt="DSRC - 50+ Years of Innovation"
+                  data-testid="img-difference"
+                  className="w-full max-w-[280px] mx-auto"
+                />
               </div>
-            ))}
+            )}
+            <div className="flex-1">
+              <h2 className="text-2xl font-bold text-[#0033a0] mb-3">{page.difference.title}</h2>
+              <p className="text-[15px] text-gray-600 mb-8 leading-[1.8]">{page.difference.subtitle}</p>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+                {page.difference.stats.map((stat: any, idx: number) => (
+                  <div key={idx} data-testid={`stat-${idx}`} className="text-center py-6 px-4 bg-white rounded border border-gray-200 shadow-sm">
+                    <div className="text-3xl font-bold text-[#0033a0]">{stat.value}</div>
+                    <div className="mt-2 text-xs text-gray-500">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {page.companyOverview && (
-        <section className="py-16 bg-white">
-          <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-6">{page.companyOverview.title}</h2>
-            <p className="text-[15px] text-gray-600 leading-[1.8] text-center">{page.companyOverview.text}</p>
-          </div>
-        </section>
-      )}
-
-      <section id="values" className="py-16 bg-[#f5f5f5]">
+      <section id="values" className="py-16 bg-white">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-10">{page.values.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -81,9 +87,9 @@ export default function WhoWeAre() {
               <div
                 key={idx}
                 data-testid={`value-card-${idx}`}
-                className="p-5 bg-white rounded border border-gray-200"
+                className="p-5 bg-[#f5f5f5] rounded border border-gray-100"
               >
-                <h3 className="text-sm font-bold text-gray-800 mb-2">{value.title}</h3>
+                <h3 className="text-sm font-bold text-[#0033a0] mb-2">{value.title}</h3>
                 <p className="text-xs text-gray-500 leading-relaxed">{value.description}</p>
               </div>
             ))}
@@ -91,23 +97,34 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      <section id="locations" className="py-16 bg-white">
+      <section id="locations" className="py-16 bg-[#f0f4fa]">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-10">{page.locations.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {page.locations.offices.map((office: any, idx: number) => (
-              <div key={idx} data-testid={`location-${idx}`} className="p-5 bg-[#f5f5f5] rounded border border-gray-200">
-                <h3 className="font-bold text-gray-800 text-sm">{office.city}</h3>
-                <p className="text-xs text-[#0033a0] font-medium mt-1">{office.role}</p>
-                <div className="flex items-start gap-1.5 mt-2 text-sm text-gray-500">
-                  <MapPin className="w-3.5 h-3.5 mt-0.5 shrink-0 text-gray-400" />
-                  <span>{office.address}</span>
+              <div key={idx} data-testid={`location-${idx}`} className="p-5 bg-white rounded border border-gray-200 shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  {office.flag ? (
+                    <img src={office.flag} alt={office.city} className="h-5 w-auto rounded-sm" />
+                  ) : (
+                    <MapPin className="w-4 h-4 text-[#0033a0] shrink-0" />
+                  )}
+                  <h3 className="font-bold text-[#0033a0] text-sm">{office.city}</h3>
                 </div>
+                <p className="text-xs text-gray-500 font-medium mb-2 uppercase tracking-wide">{office.role}</p>
+                <p className="text-[13px] text-gray-600 leading-relaxed">{office.address}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      <CTASection
+        title="Want to explore how DSRC can help your business?"
+        subtitle="Let's talk! Our team is ready to connect with you."
+        cta={{ label: "Contact Us", href: "/contact" }}
+        variant="white"
+      />
     </>
   );
 }

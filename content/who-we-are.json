@@ -4,8 +4,10 @@
     "description": "Learn about DSRC's five decades of engineering excellence and innovation."
   },
   "hero": {
-    "title": "Who we are",
-    "subtitle": "Engineering strength and agile innovation, delivering excellence for over five decades."
+    "title": "WHO WE ARE",
+    "subtitle": "Engineering strength and agile innovation, delivering excellence for over five decades.",
+    "bgImage": "/images/hero-slide-1.webp",
+    "breadcrumbs": ["DSRC", "Who We Are"]
   },
   "intro": {
     "paragraphs": [
@@ -25,6 +27,7 @@
   "difference": {
     "title": "The DSRC Difference",
     "subtitle": "With over 50 years of experience and 350+ skilled engineers, DSRC delivers innovative technology solutions to global enterprises across multiple continents.",
+    "image": "/images/dsrc-different.png",
     "stats": [
       { "value": "50+", "label": "Years of Innovation" },
       { "value": "350+", "label": "Skilled Engineers" },
@@ -55,8 +58,10 @@
       { "city": "Chennai, India", "role": "Corporate Headquarters", "address": "11 Smith Road, 'Kasturi Towers', Chennai 600002" },
       { "city": "Santa Clara, CA", "role": "US West Coast Office", "address": "4677 Old Ironsides Drive, Suite# 250, Santa Clara, CA 95054" },
       { "city": "Parsippany, NJ", "role": "US East Coast Office", "address": "2011 Route 46, Waterview Plaza, Suite 310, Parsippany, NJ 07054" },
-      { "city": "London, UK", "role": "United Kingdom", "address": "10 Orange Street, Haymarket, London WC2H 7DQ" },
-      { "city": "Amsterdam, NL", "role": "Netherlands", "address": "Herengracht 449a 1017 BR, Amsterdam" }
+      { "city": "London, UK", "role": "United Kingdom", "address": "10 Orange Street, Haymarket, London WC2H 7DQ", "flag": "/images/flag-uk.png" },
+      { "city": "Dublin, Ireland", "role": "Ireland", "address": "1 Windmill Lane, Dublin, D02 F206, Ireland", "flag": "/images/flag-ireland.png" },
+      { "city": "Amsterdam, NL", "role": "Netherlands / Europe", "address": "Herengracht 449a 1017 BR, Amsterdam, Netherlands", "flag": "/images/flag-europe.png" },
+      { "city": "Santa Clara / Parsippany, USA", "role": "United States", "address": "4677 Old Ironsides Drive, Suite# 250, Santa Clara, CA 95054", "flag": "/images/flag-usa.png" }
     ]
   }
 }

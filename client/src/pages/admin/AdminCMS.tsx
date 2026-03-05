@@ -21,6 +21,8 @@ import {
   List,
   Package,
   MousePointer,
+  Rocket,
+  Loader2,
 } from "lucide-react";
 
 const ActiveFieldContext = createContext<string | null>(null);
@@ -789,7 +791,29 @@ export default function AdminCMS() {
   const [servicesExpanded, setServicesExpanded] = useState(false);
   const [activeFieldKey, setActiveFieldKey] = useState<string | null>(null);
   const [clickToEditMode, setClickToEditMode] = useState(true);
+  const [deployStatus, setDeployStatus] = useState<"idle" | "deploying" | "success" | "error">("idle");
+  const [deployMessage, setDeployMessage] = useState<string>("");
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const deployMutation = useMutation({
+    mutationFn: async () => {
+      const res = await fetch("/api/deploy", { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Deploy failed");
+      return data;
+    },
+    onMutate: () => { setDeployStatus("deploying"); setDeployMessage(""); },
+    onSuccess: (data) => {
+      setDeployStatus("success");
+      setDeployMessage(data.message || "Deployment triggered.");
+      setTimeout(() => setDeployStatus("idle"), 5000);
+    },
+    onError: (err: Error) => {
+      setDeployStatus("error");
+      setDeployMessage(err.message);
+      setTimeout(() => setDeployStatus("idle"), 7000);
+    },
+  });
 
   const serviceNavItems: NavItem[] = SERVICE_SLUGS.map(s => ({
     id: s.slug,
@@ -966,6 +990,39 @@ export default function AdminCMS() {
             <button data-testid="btn-refresh-preview" onClick={refreshPreview} className="p-1.5 rounded hover:bg-gray-100 text-gray-500" title="Refresh preview">
               <RefreshCw className="w-4 h-4" />
             </button>
+            <div className="w-px h-5 bg-gray-200" />
+            <div className="flex flex-col items-end gap-0.5">
+              <button
+                data-testid="btn-deploy"
+                onClick={() => deployMutation.mutate()}
+                disabled={deployStatus === "deploying"}
+                title="Trigger Jenkins deployment"
+                className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded font-medium transition-colors ${
+                  deployStatus === "deploying"
+                    ? "bg-amber-100 text-amber-700 cursor-not-allowed"
+                    : deployStatus === "success"
+                    ? "bg-green-100 text-green-700"
+                    : deployStatus === "error"
+                    ? "bg-red-100 text-red-700"
+                    : "bg-[#0033a0] text-white hover:bg-[#002280]"
+                }`}
+              >
+                {deployStatus === "deploying" ? (
+                  <><Loader2 className="w-3 h-3 animate-spin" /> Deploying...</>
+                ) : deployStatus === "success" ? (
+                  <><Check className="w-3 h-3" /> Deployed!</>
+                ) : deployStatus === "error" ? (
+                  <><AlertCircle className="w-3 h-3" /> Failed</>
+                ) : (
+                  <><Rocket className="w-3 h-3" /> Deploy</>
+                )}
+              </button>
+              {deployMessage && (
+                <span className={`text-[10px] max-w-[180px] truncate ${deployStatus === "error" ? "text-red-500" : "text-green-600"}`}>
+                  {deployMessage}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 

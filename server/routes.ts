@@ -75,6 +75,28 @@ export async function registerRoutes(
     }
   });
 
+  app.post("/api/deploy", async (_req, res) => {
+    const webhookUrl = process.env.JENKINS_WEBHOOK_URL;
+    if (!webhookUrl) {
+      return res.status(503).json({ error: "JENKINS_WEBHOOK_URL is not configured on this server." });
+    }
+    try {
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (process.env.JENKINS_TOKEN) {
+        const creds = Buffer.from(`${process.env.JENKINS_USER || "admin"}:${process.env.JENKINS_TOKEN}`).toString("base64");
+        headers["Authorization"] = `Basic ${creds}`;
+      }
+      const upstream = await fetch(webhookUrl, { method: "POST", headers });
+      if (!upstream.ok) {
+        const body = await upstream.text().catch(() => "");
+        return res.status(502).json({ error: `Jenkins responded with ${upstream.status}`, detail: body });
+      }
+      res.json({ success: true, message: "Deployment triggered successfully." });
+    } catch (err: any) {
+      res.status(500).json({ error: "Failed to reach Jenkins.", detail: err.message });
+    }
+  });
+
   app.get("/api/content/list", (_req, res) => {
     const pages: string[] = [];
     const services: string[] = [];

@@ -70,9 +70,29 @@ Corporate website for **DSRC** (Data Software Research Company), a faithful recr
   - Save button → `PUT /api/content/*` endpoint → writes JSON file to disk
   - "Unsaved changes" indicator, save confirmation
   - Toggle button to enable/disable click-to-edit mode
+  - **Deploy button** → `POST /api/deploy` → triggers Jenkins job via webhook; shows deploying/success/error states
+- Admin is **excluded from static builds** (`VITE_STATIC_BUILD=true`): lazy-loaded and replaced with 404 in the static bundle, reducing static bundle size by ~30 kB
 - No external CMS account or API key required — fully self-hosted
 - Component: `client/src/pages/admin/AdminCMS.tsx`
 - TinaCMS schema reference: `tina/config.ts` (defines all 7 collections/fields)
+
+### Jenkins Deployment Integration
+- `POST /api/deploy` Express route forwards to `JENKINS_WEBHOOK_URL` with optional Basic Auth
+- Required env var: `JENKINS_WEBHOOK_URL` — the full Jenkins job trigger URL
+- Optional env vars: `JENKINS_USER` (default: `admin`), `JENKINS_TOKEN` (API token/password)
+- Jenkins URL format: `http://jenkins.example.com/job/JOB_NAME/build?token=AUTH_TOKEN`
+
+### Docker / Local Marketing Team Deployment
+- `Dockerfile` — Node 20 Alpine, runs `npm run dev` on port 5000
+- `docker-compose.yml` — mounts `./content` and `./client/public/images` as volumes so edits persist on the host; passes Jenkins env vars
+- `.env.example` — template for configuring Jenkins webhook credentials
+- Start: `docker compose up` (after copying `.env.example` to `.env` and filling in Jenkins values)
+
+### Static Build (IIS / S3+CloudFront deployment)
+- Run `npx tsx script/build-static.ts` to produce `dist/public/`
+- All JSON content baked into the JS bundle — no Express server or API needed at runtime
+- Includes `web.config` for IIS URL Rewrite (SPA routing)
+- For CloudFront: configure custom error response `404 → /index.html (200)`
 
 ### Visual Editing Integration
 - Custom `useTina` hook in `client/src/lib/tina-react.ts` — drop-in replacement for `tinacms/dist/react`

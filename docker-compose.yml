@@ -1,0 +1,14 @@
+services:
+  dsrc-cms:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./content:/app/content
+      - ./client/public/images:/app/client/public/images
+    environment:
+      - NODE_ENV=development
+      - JENKINS_WEBHOOK_URL=${JENKINS_WEBHOOK_URL}
+      - JENKINS_USER=${JENKINS_USER:-admin}
+      - JENKINS_TOKEN=${JENKINS_TOKEN}
+    restart: unless-stopped

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -12,8 +12,10 @@ import ServiceDetail from "@/pages/ServiceDetail";
 import WhoWeAre from "@/pages/WhoWeAre";
 import Careers from "@/pages/Careers";
 import Contact from "@/pages/Contact";
-import AdminCMS from "@/pages/admin/AdminCMS";
 import NotFound from "@/pages/not-found";
+
+const IS_STATIC = import.meta.env.VITE_STATIC_BUILD === "true";
+const AdminCMS = IS_STATIC ? null : lazy(() => import("@/pages/admin/AdminCMS"));
 
 function SiteRouter() {
   useEffect(() => {
@@ -76,9 +78,15 @@ function App() {
       <TooltipProvider>
         <Toaster />
         {isAdmin ? (
-          <Switch>
-            <Route path="/admin" component={AdminCMS} />
-          </Switch>
+          IS_STATIC || !AdminCMS ? (
+            <NotFound />
+          ) : (
+            <Suspense fallback={null}>
+              <Switch>
+                <Route path="/admin" component={AdminCMS} />
+              </Switch>
+            </Suspense>
+          )
         ) : (
           <SiteRouter />
         )}

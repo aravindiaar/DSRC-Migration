@@ -64,13 +64,30 @@ Corporate website for **DSRC** (Data Software Research Company), a faithful recr
 - Dark navy sidebar lists all editable content: 6 pages + 4 service detail pages
 - Features:
   - Click any page in sidebar → loads its JSON fields into the editor form
+  - **Click-to-edit**: when preview is open, click any section in the live site preview → editor automatically jumps to and highlights that field
   - Edit text, images, lists, nested objects, list-of-objects (with add/remove)
   - Preview iframe updates to show the selected page
   - Save button → `PUT /api/content/*` endpoint → writes JSON file to disk
   - "Unsaved changes" indicator, save confirmation
+  - Toggle button to enable/disable click-to-edit mode
 - No external CMS account or API key required — fully self-hosted
 - Component: `client/src/pages/admin/AdminCMS.tsx`
 - TinaCMS schema reference: `tina/config.ts` (defines all 7 collections/fields)
+
+### Visual Editing Integration
+- Custom `useTina` hook in `client/src/lib/tina-react.ts` — drop-in replacement for `tinacms/dist/react`
+  - Avoids duplicate React instance crash (tinacms pre-bundles React)
+  - Annotates every JSON field with `_content_source: { queryId, path }` metadata
+  - Listens for `updateData` postMessages from parent frame (live editing updates)
+- All 6 pages use `useTina` + `tinaField()` to generate `data-tina-field` attributes on key elements
+- When site is loaded inside the admin iframe, `SiteRouter` adds `tina-admin-preview` class to `<body>`
+  - CSS rule shows blue outline on hover for all `data-tina-field` elements
+  - Click interceptor detects clicks on `data-tina-field` elements and sends `tina-field-selected` postMessage to admin parent
+- Admin receives the click message, parses the field path, auto-switches collection and scrolls/highlights the matching editor field
+- IMPORTANT: `tinacms dev` CLI hangs in Replit (LevelDB indexing issue) — TinaCMS admin server intentionally not used; the custom AdminCMS provides equivalent UX
+
+### Key Bug Fixed
+- `client/src/lib/content.ts`: `useQuery` with `queryFn: undefined` explicitly set overrides the default query function in TanStack Query v5 → pages stuck on loading forever. Fixed by using spread operator: `...(IS_STATIC && { queryFn: ... })` so `queryFn` is only set when truly needed
 
 ### Design Matching dsrc.com
 - White navbar with DSRC logo image and navy blue "Let's Connect!" button

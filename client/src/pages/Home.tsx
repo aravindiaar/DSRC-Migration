@@ -1,5 +1,8 @@
+import { useMemo } from "react";
+import { useTina, tinaField } from "@/lib/tina-react";
 import { useHead } from "@/hooks/use-head";
 import { usePageContent } from "@/lib/content";
+import { HOME_QUERY } from "@/lib/tinaQueries";
 import HeroSlider from "@/components/sections/HeroSlider";
 import WhoWeAreSection from "@/components/sections/WhoWeAreSection";
 import ServicesSection from "@/components/sections/ServicesSection";
@@ -8,7 +11,17 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import CareersSection from "@/components/sections/CareersSection";
 
 export default function Home() {
-  const { data: page, isLoading } = usePageContent("home");
+  const { data: apiData, isLoading } = usePageContent("home");
+
+  const tinaData = useMemo(() => ({ home: apiData }), [apiData]);
+  const { data: tina } = useTina({
+    query: HOME_QUERY,
+    variables: { relativePath: "home.json" },
+    data: tinaData,
+  });
+
+  const page = apiData;
+  const tinaRef = tina?.home;
 
   useHead({
     title: page?.seo?.title || "DSRC",
@@ -25,33 +38,45 @@ export default function Home() {
 
   return (
     <>
-      <HeroSlider slides={page.heroSlides} />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "heroSlides") : undefined}>
+        <HeroSlider slides={page.heroSlides} />
+      </div>
 
-      <WhoWeAreSection
-        sectionTitle={page.whoWeAre.sectionTitle}
-        paragraphs={page.whoWeAre.paragraphs}
-        cta={page.whoWeAre.cta}
-      />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "whoWeAre") : undefined}>
+        <WhoWeAreSection
+          sectionTitle={page.whoWeAre.sectionTitle}
+          paragraphs={page.whoWeAre.paragraphs}
+          cta={page.whoWeAre.cta}
+        />
+      </div>
 
-      <ServicesSection
-        sectionTitle={page.services.sectionTitle}
-        subtitle={page.services.subtitle}
-        items={page.services.items}
-      />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "services") : undefined}>
+        <ServicesSection
+          sectionTitle={page.services.sectionTitle}
+          subtitle={page.services.subtitle}
+          items={page.services.items}
+        />
+      </div>
 
-      <CustomersSection logos={page.customers.logos} />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "customers") : undefined}>
+        <CustomersSection logos={page.customers.logos} />
+      </div>
 
-      <TestimonialsSection
-        sectionTitle={page.testimonials.sectionTitle}
-        items={page.testimonials.items}
-      />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "testimonials") : undefined}>
+        <TestimonialsSection
+          sectionTitle={page.testimonials.sectionTitle}
+          items={page.testimonials.items}
+        />
+      </div>
 
-      <CareersSection
-        sectionTitle={page.careers.sectionTitle}
-        heading={page.careers.heading}
-        description={page.careers.description}
-        cta={page.careers.cta}
-      />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "careers") : undefined}>
+        <CareersSection
+          sectionTitle={page.careers.sectionTitle}
+          heading={page.careers.heading}
+          description={page.careers.description}
+          cta={page.careers.cta}
+        />
+      </div>
     </>
   );
 }

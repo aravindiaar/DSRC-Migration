@@ -1,5 +1,8 @@
+import { useMemo } from "react";
+import { useTina, tinaField } from "@/lib/tina-react";
 import { useHead } from "@/hooks/use-head";
 import { useServiceContent } from "@/lib/content";
+import { SERVICE_DETAIL_QUERY } from "@/lib/tinaQueries";
 import HeroSection from "@/components/sections/HeroSection";
 import CTASection from "@/components/sections/CTASection";
 import { Link } from "wouter";
@@ -42,7 +45,17 @@ const whyChooseIcons: Record<string, any> = {
 const processIcons = [Lightbulb, CircleDot, Zap, RefreshCw];
 
 export default function ServiceDetail({ slug }: ServiceDetailProps) {
-  const { data: page, isLoading } = useServiceContent(slug);
+  const { data: apiData, isLoading } = useServiceContent(slug);
+
+  const tinaData = useMemo(() => ({ serviceDetail: apiData }), [apiData]);
+  const { data: tina } = useTina({
+    query: SERVICE_DETAIL_QUERY,
+    variables: { relativePath: `${slug}.json` },
+    data: tinaData,
+  });
+
+  const page = apiData;
+  const tinaRef = tina?.serviceDetail;
 
   useHead({
     title: page?.seo?.title || "DSRC Services",
@@ -59,16 +72,21 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
 
   return (
     <>
-      <HeroSection
-        title={page.hero.title}
-        subtitle={page.hero.subtitle}
-        variant="dark"
-        bgImage={page.hero.bgImage}
-        breadcrumbs={page.hero.breadcrumbs}
-      />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "hero") : undefined}>
+        <HeroSection
+          title={page.hero.title}
+          subtitle={page.hero.subtitle}
+          variant="dark"
+          bgImage={page.hero.bgImage}
+          breadcrumbs={page.hero.breadcrumbs}
+        />
+      </div>
 
       {page.whyDsrc && (
-        <section className="py-16 bg-white">
+        <section
+          data-tina-field={tinaRef ? tinaField(tinaRef, "whyDsrc") : undefined}
+          className="py-16 bg-white"
+        >
           <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-xl lg:text-2xl font-bold text-[#0033a0] mb-5 tracking-wide uppercase">{page.whyDsrc.title}</h2>
             {page.whyDsrc.description && (
@@ -84,7 +102,12 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
                       <Lightbulb className="w-8 h-8 text-[#0033a0]" />
                     </div>
                   )}
-                  <h3 className="text-[13px] font-bold text-[#0033a0]">{item.title}</h3>
+                  <h3
+                    data-tina-field={tinaField(item, "title")}
+                    className="text-[13px] font-bold text-[#0033a0]"
+                  >
+                    {item.title}
+                  </h3>
                 </div>
               ))}
             </div>
@@ -93,7 +116,10 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.overview && (
-        <section className="py-14 bg-[#f0f4fa]">
+        <section
+          data-tina-field={tinaRef ? tinaField(tinaRef, "overview") : undefined}
+          className="py-14 bg-[#f0f4fa]"
+        >
           <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
             {page.overview.heading && (
               <h2 className="text-lg lg:text-xl font-bold text-[#0033a0] mb-6 tracking-wide uppercase">{page.overview.heading}</h2>
@@ -230,7 +256,10 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.expertise && (
-        <section className="py-14 bg-white">
+        <section
+          data-tina-field={tinaRef ? tinaField(tinaRef, "expertise") : undefined}
+          className="py-14 bg-white"
+        >
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center text-xl lg:text-2xl font-bold text-[#0033a0] mb-10 tracking-wide uppercase">{page.expertise.title}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -245,7 +274,12 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
                       />
                     </div>
                   )}
-                  <h3 className="text-[14px] font-bold text-[#0033a0] mb-2">{item.title}</h3>
+                  <h3
+                    data-tina-field={tinaField(item, "title")}
+                    className="text-[14px] font-bold text-[#0033a0] mb-2"
+                  >
+                    {item.title}
+                  </h3>
                   <p className="text-[13px] text-gray-500 leading-relaxed">{item.description}</p>
                 </div>
               ))}
@@ -255,7 +289,10 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.capabilities && typeof page.capabilities === "object" && !Array.isArray(page.capabilities) && (
-        <section className="py-14 bg-[#f5f5f5]">
+        <section
+          data-tina-field={tinaRef ? tinaField(tinaRef, "capabilities") : undefined}
+          className="py-14 bg-[#f5f5f5]"
+        >
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center text-xl lg:text-2xl font-bold text-[#0033a0] mb-3 uppercase tracking-wide">{page.capabilities.title}</h2>
             {page.capabilities.subtitle && (
@@ -269,7 +306,12 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
                     <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-[#f0f4fa] flex items-center justify-center">
                       <Icon className="w-5 h-5 text-[#0033a0]" />
                     </div>
-                    <h3 className="text-sm font-bold text-[#0033a0] mb-2">{item.title}</h3>
+                    <h3
+                      data-tina-field={tinaField(item, "title")}
+                      className="text-sm font-bold text-[#0033a0] mb-2"
+                    >
+                      {item.title}
+                    </h3>
                     <p className="text-[12px] text-gray-500 leading-relaxed">{item.description}</p>
                   </div>
                 );
@@ -309,7 +351,10 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.engagementModels && (
-        <section className={`py-14 ${page.approach ? "bg-[#f5f5f5]" : "bg-white"}`}>
+        <section
+          data-tina-field={tinaRef ? tinaField(tinaRef, "engagementModels") : undefined}
+          className={`py-14 ${page.approach ? "bg-[#f5f5f5]" : "bg-white"}`}
+        >
           <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-xl font-bold text-[#0033a0] mb-4">{page.engagementModels.title}</h2>
             {page.engagementModels.description && (
@@ -357,7 +402,12 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
                         <Icon className="w-6 h-6 text-[#0033a0]" />
                       </div>
                       <div>
-                        <h3 className="text-[14px] font-bold text-[#0033a0] mb-1">{item.title}</h3>
+                        <h3
+                          data-tina-field={tinaField(item, "title")}
+                          className="text-[14px] font-bold text-[#0033a0] mb-1"
+                        >
+                          {item.title}
+                        </h3>
                         <p className="text-[13px] text-gray-500 leading-relaxed">{item.description}</p>
                       </div>
                     </div>
@@ -395,7 +445,10 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.process && (
-        <section className="py-16 bg-[#f5f5f5]">
+        <section
+          data-tina-field={tinaRef ? tinaField(tinaRef, "process") : undefined}
+          className="py-16 bg-[#f5f5f5]"
+        >
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center text-xl lg:text-2xl font-bold text-[#222] mb-12 tracking-wide uppercase">{page.process.title}</h2>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -406,7 +459,12 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
                     <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#0033a0] flex items-center justify-center">
                       <Icon className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-[13px] font-bold text-[#0033a0] mb-2">{step.title}</h3>
+                    <h3
+                      data-tina-field={tinaField(step, "title")}
+                      className="text-[13px] font-bold text-[#0033a0] mb-2"
+                    >
+                      {step.title}
+                    </h3>
                     {step.description && (
                       <p className="text-[12px] text-gray-500 leading-relaxed">{step.description}</p>
                     )}
@@ -419,23 +477,34 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.caseStudies && (
-        <section className="py-16 bg-white">
+        <section
+          data-tina-field={tinaRef ? tinaField(tinaRef, "caseStudies") : undefined}
+          className="py-16 bg-white"
+        >
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               {page.caseStudies.items.map((study: any, idx: number) => (
                 <div key={idx} data-testid={`case-study-${idx}`}>
                   {idx === 0 ? (
-                    <>
-                      <div className="relative h-[220px] rounded-lg overflow-hidden">
-                        <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#001a4d]/80 to-transparent flex items-end p-4">
-                          <h3 className="text-white text-[14px] font-bold leading-tight">{study.title}</h3>
-                        </div>
+                    <div className="relative h-[220px] rounded-lg overflow-hidden">
+                      <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#001a4d]/80 to-transparent flex items-end p-4">
+                        <h3
+                          data-tina-field={tinaField(study, "title")}
+                          className="text-white text-[14px] font-bold leading-tight"
+                        >
+                          {study.title}
+                        </h3>
                       </div>
-                    </>
+                    </div>
                   ) : idx === 1 ? (
                     <div className="bg-white border border-gray-200 rounded-lg p-5 h-[220px] flex flex-col justify-center">
-                      <p className="text-[13px] text-gray-600 leading-relaxed mb-4">{study.description}</p>
+                      <p
+                        data-tina-field={tinaField(study, "description")}
+                        className="text-[13px] text-gray-600 leading-relaxed mb-4"
+                      >
+                        {study.description}
+                      </p>
                       <div data-testid={`link-read-more-${idx}`} className="flex items-center gap-2 text-[#0033a0] text-[13px] font-semibold cursor-pointer">
                         <ArrowRightCircle className="w-4 h-4" />
                         <span>Read more</span>
@@ -445,7 +514,12 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
                     <div className="relative h-[220px] rounded-lg overflow-hidden">
                       <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#001a4d]/80 to-transparent flex items-end p-4">
-                        <h3 className="text-white text-[14px] font-bold leading-tight">{study.title}</h3>
+                        <h3
+                          data-tina-field={tinaField(study, "title")}
+                          className="text-white text-[14px] font-bold leading-tight"
+                        >
+                          {study.title}
+                        </h3>
                       </div>
                     </div>
                   )}
@@ -457,7 +531,10 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
       )}
 
       {page.insights && (
-        <section className="py-16 bg-[#f0f4fa]">
+        <section
+          data-tina-field={tinaRef ? tinaField(tinaRef, "insights") : undefined}
+          className="py-16 bg-[#f0f4fa]"
+        >
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center text-xl lg:text-2xl font-bold text-[#0033a0] mb-10 tracking-wide uppercase">{page.insights.title}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -470,7 +547,12 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
                         <Icon className="w-10 h-10 text-[#0033a0] mx-auto" />
                       </div>
                     )}
-                    <h3 className="text-[15px] font-bold text-[#0033a0] mb-4">{insight.title}</h3>
+                    <h3
+                      data-tina-field={tinaField(insight, "title")}
+                      className="text-[15px] font-bold text-[#0033a0] mb-4"
+                    >
+                      {insight.title}
+                    </h3>
                     <p className="text-[13px] text-gray-500 leading-relaxed flex-1">{insight.description}</p>
                     {insight.link && (
                       <div className="mt-6 pt-4 border-t border-gray-100">
@@ -490,12 +572,14 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
         </section>
       )}
 
-      <CTASection
-        title={page.cta.title}
-        subtitle={page.cta.subtitle}
-        cta={page.cta.button}
-        variant={page.ctaVariant === "white" ? "white" : "blue"}
-      />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "cta") : undefined}>
+        <CTASection
+          title={page.cta.title}
+          subtitle={page.cta.subtitle}
+          cta={page.cta.button}
+          variant={page.ctaVariant === "white" ? "white" : "blue"}
+        />
+      </div>
     </>
   );
 }

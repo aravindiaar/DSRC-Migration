@@ -1,11 +1,24 @@
+import { useMemo } from "react";
+import { useTina, tinaField } from "@/lib/tina-react";
 import { useHead } from "@/hooks/use-head";
 import { usePageContent } from "@/lib/content";
+import { WHO_WE_ARE_QUERY } from "@/lib/tinaQueries";
 import HeroSection from "@/components/sections/HeroSection";
 import CTASection from "@/components/sections/CTASection";
 import { MapPin } from "lucide-react";
 
 export default function WhoWeAre() {
-  const { data: page, isLoading } = usePageContent("who-we-are");
+  const { data: apiData, isLoading } = usePageContent("who-we-are");
+
+  const tinaData = useMemo(() => ({ whoWeAre: apiData }), [apiData]);
+  const { data: tina } = useTina({
+    query: WHO_WE_ARE_QUERY,
+    variables: { relativePath: "who-we-are.json" },
+    data: tinaData,
+  });
+
+  const page = apiData;
+  const tinaRef = tina?.whoWeAre;
 
   useHead({
     title: page?.seo?.title || "Who We Are - DSRC",
@@ -22,27 +35,38 @@ export default function WhoWeAre() {
 
   return (
     <>
-      <HeroSection
-        title={page.hero.title}
-        subtitle={page.hero.subtitle}
-        variant="dark"
-        bgImage={page.hero.bgImage}
-        breadcrumbs={page.hero.breadcrumbs}
-      />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "hero") : undefined}>
+        <HeroSection
+          title={page.hero.title}
+          subtitle={page.hero.subtitle}
+          variant="dark"
+          bgImage={page.hero.bgImage}
+          breadcrumbs={page.hero.breadcrumbs}
+        />
+      </div>
 
       <section className="py-16 bg-white">
         <div className="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-5 mb-12">
+          <div
+            data-tina-field={tinaRef ? tinaField(tinaRef, "intro") : undefined}
+            className="space-y-5 mb-12"
+          >
             {page.intro.paragraphs.map((p: string, idx: number) => (
               <p key={idx} className="text-[15px] text-gray-600 leading-[1.8]">{p}</p>
             ))}
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div data-testid="vision-block">
+            <div
+              data-testid="vision-block"
+              data-tina-field={tinaRef ? tinaField(tinaRef, "vision") : undefined}
+            >
               <h3 className="text-lg font-bold text-[#0033a0] mb-4">{page.vision.title}</h3>
               <p className="text-[15px] text-gray-600 leading-[1.8]">{page.vision.text}</p>
             </div>
-            <div data-testid="mission-block">
+            <div
+              data-testid="mission-block"
+              data-tina-field={tinaRef ? tinaField(tinaRef, "mission") : undefined}
+            >
               <h3 className="text-lg font-bold text-[#0033a0] mb-4">{page.mission.title}</h3>
               <p className="text-[15px] text-gray-600 leading-[1.8]">{page.mission.text}</p>
             </div>
@@ -50,7 +74,11 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      <section id="difference" className="py-16 bg-[#f0f4fa]">
+      <section
+        id="difference"
+        data-tina-field={tinaRef ? tinaField(tinaRef, "difference") : undefined}
+        className="py-16 bg-[#f0f4fa]"
+      >
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             {page.difference.image && (
@@ -69,8 +97,18 @@ export default function WhoWeAre() {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
                 {page.difference.stats.map((stat: any, idx: number) => (
                   <div key={idx} data-testid={`stat-${idx}`} className="text-center py-6 px-4 bg-white rounded border border-gray-200 shadow-sm">
-                    <div className="text-3xl font-bold text-[#0033a0]">{stat.value}</div>
-                    <div className="mt-2 text-xs text-gray-500">{stat.label}</div>
+                    <div
+                      data-tina-field={tinaField(stat, "value")}
+                      className="text-3xl font-bold text-[#0033a0]"
+                    >
+                      {stat.value}
+                    </div>
+                    <div
+                      data-tina-field={tinaField(stat, "label")}
+                      className="mt-2 text-xs text-gray-500"
+                    >
+                      {stat.label}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -79,7 +117,11 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      <section id="values" className="py-16 bg-white">
+      <section
+        id="values"
+        data-tina-field={tinaRef ? tinaField(tinaRef, "values") : undefined}
+        className="py-16 bg-white"
+      >
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-2xl font-bold text-[#0033a0] mb-10">{page.values.title}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -89,8 +131,18 @@ export default function WhoWeAre() {
                 data-testid={`value-card-${idx}`}
                 className="p-5 bg-[#f5f5f5] rounded border border-gray-100"
               >
-                <h3 className="text-sm font-bold text-[#0033a0] mb-2">{value.title}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{value.description}</p>
+                <h3
+                  data-tina-field={tinaField(value, "title")}
+                  className="text-sm font-bold text-[#0033a0] mb-2"
+                >
+                  {value.title}
+                </h3>
+                <p
+                  data-tina-field={tinaField(value, "description")}
+                  className="text-xs text-gray-500 leading-relaxed"
+                >
+                  {value.description}
+                </p>
               </div>
             ))}
           </div>

@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+.tina-admin-preview [data-tina-field] {
+  cursor: pointer;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color 0.15s ease;
+}
+.tina-admin-preview [data-tina-field]:hover {
+  outline-color: rgba(0, 51, 160, 0.65);
+}
+.tina-admin-preview [data-tina-field].tina-field-active {
+  outline-color: #0033a0;
+}
+
 /* LIGHT MODE */
 :root {
   --button-outline: rgba(0,0,0, .10);

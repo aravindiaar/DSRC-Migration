@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -15,6 +16,27 @@ import AdminCMS from "@/pages/admin/AdminCMS";
 import NotFound from "@/pages/not-found";
 
 function SiteRouter() {
+  useEffect(() => {
+    if (typeof window === "undefined" || window === window.parent) return;
+
+    document.body.classList.add("tina-admin-preview");
+
+    const handleClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest("[data-tina-field]");
+      if (!target) return;
+      const fieldId = target.getAttribute("data-tina-field");
+      try {
+        window.parent.postMessage({ type: "tina-field-selected", fieldId }, "*");
+      } catch (_) {}
+    };
+
+    document.addEventListener("click", handleClick, true);
+    return () => {
+      document.removeEventListener("click", handleClick, true);
+      document.body.classList.remove("tina-admin-preview");
+    };
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />

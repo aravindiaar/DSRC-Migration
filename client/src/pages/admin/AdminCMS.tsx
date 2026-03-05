@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/lib/queryClient";
 import {
@@ -19,10 +19,11 @@ import {
   Trash2,
   Image,
   List,
-  AlignLeft,
-  Type,
   Package,
+  MousePointer,
 } from "lucide-react";
+
+const ActiveFieldContext = createContext<string | null>(null);
 
 type FieldDef = {
   key: string;
@@ -319,17 +320,17 @@ const SERVICE_FIELDS: FieldDef[] = [
   ]},
 ];
 
+const TINA_ROOT_TO_COLLECTION: Record<string, string> = {
+  whoWeAre: "who-we-are",
+  home: "home",
+  services: "services",
+  careers: "careers",
+  contact: "contact",
+  global: "global",
+};
+
 function getNestedValue(obj: any, path: string[]): any {
   return path.reduce((o, key) => (o && o[key] !== undefined ? o[key] : undefined), obj);
-}
-
-function setNestedValue(obj: any, path: string[], value: any): any {
-  if (path.length === 0) return value;
-  const [first, ...rest] = path;
-  return {
-    ...obj,
-    [first]: rest.length === 0 ? value : setNestedValue(obj?.[first] ?? {}, rest, value),
-  };
 }
 
 type FieldEditorProps = {
@@ -340,14 +341,21 @@ type FieldEditorProps = {
 };
 
 function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
+  const activeFieldKey = useContext(ActiveFieldContext);
   const [expanded, setExpanded] = useState(true);
+  const isActive = activeFieldKey === field.key;
   const indent = depth * 16;
 
   const baseInput = "w-full border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#0033a0] focus:border-[#0033a0]";
+  const activeRing = isActive ? " ring-2 ring-[#0033a0] ring-offset-1 rounded" : "";
 
   if (field.type === "text") {
     return (
-      <div className="mb-4" style={{ marginLeft: indent }}>
+      <div
+        data-field-key={field.key}
+        className={`mb-4${activeRing}`}
+        style={{ marginLeft: indent }}
+      >
         <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{field.label}</label>
         <input
           data-testid={`input-${field.key}`}
@@ -363,7 +371,11 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
 
   if (field.type === "textarea") {
     return (
-      <div className="mb-4" style={{ marginLeft: indent }}>
+      <div
+        data-field-key={field.key}
+        className={`mb-4${activeRing}`}
+        style={{ marginLeft: indent }}
+      >
         <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{field.label}</label>
         <textarea
           data-testid={`textarea-${field.key}`}
@@ -378,7 +390,11 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
 
   if (field.type === "image") {
     return (
-      <div className="mb-4" style={{ marginLeft: indent }}>
+      <div
+        data-field-key={field.key}
+        className={`mb-4${activeRing}`}
+        style={{ marginLeft: indent }}
+      >
         <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
           <Image className="inline w-3 h-3 mr-1" />{field.label}
         </label>
@@ -398,7 +414,7 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
               src={value}
               alt=""
               className="w-16 h-10 object-cover rounded border border-gray-200 flex-shrink-0"
-              onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+              onError={e => { (e.target as HTMLImageElement).style.display = "none"; }}
             />
           )}
         </div>
@@ -409,7 +425,11 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
   if (field.type === "list") {
     const arr: string[] = Array.isArray(value) ? value : [];
     return (
-      <div className="mb-4" style={{ marginLeft: indent }}>
+      <div
+        data-field-key={field.key}
+        className={`mb-4${activeRing}`}
+        style={{ marginLeft: indent }}
+      >
         <div className="flex items-center justify-between mb-2">
           <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide">
             <List className="inline w-3 h-3 mr-1" />{field.label}
@@ -451,7 +471,11 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
 
   if (field.type === "object" && field.fields) {
     return (
-      <div className="mb-4" style={{ marginLeft: indent }}>
+      <div
+        data-field-key={field.key}
+        className={`mb-4${activeRing}`}
+        style={{ marginLeft: indent }}
+      >
         <button
           data-testid={`toggle-${field.key}`}
           onClick={() => setExpanded(!expanded)}
@@ -459,6 +483,7 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
         >
           {expanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
           {field.label}
+          {isActive && <span className="ml-1 text-[#0033a0] font-normal normal-case">← clicked</span>}
         </button>
         {expanded && (
           <div className="border-l-2 border-gray-100 pl-3">
@@ -480,7 +505,11 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
   if (field.type === "list-of-objects" && field.fields) {
     const arr: any[] = Array.isArray(value) ? value : [];
     return (
-      <div className="mb-4" style={{ marginLeft: indent }}>
+      <div
+        data-field-key={field.key}
+        className={`mb-4${activeRing}`}
+        style={{ marginLeft: indent }}
+      >
         <div className="flex items-center justify-between mb-2">
           <button
             data-testid={`toggle-list-${field.key}`}
@@ -489,6 +518,7 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
           >
             {expanded ? <ChevronDown className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
             {field.label} ({arr.length})
+            {isActive && <span className="ml-1 text-[#0033a0] font-normal normal-case">← clicked</span>}
           </button>
           <button
             data-testid={`btn-add-obj-${field.key}`}
@@ -543,9 +573,10 @@ function FieldEditor({ field, value, onChange, depth = 0 }: FieldEditorProps) {
 type EditorPanelProps = {
   collection: CollectionDef;
   onPreview: (path: string) => void;
+  activeFieldKey: string | null;
 };
 
-function EditorPanel({ collection, onPreview }: EditorPanelProps) {
+function EditorPanel({ collection, onPreview, activeFieldKey }: EditorPanelProps) {
   const { data: rawData, isLoading } = useQuery<any>({
     queryKey: [collection.apiPath],
   });
@@ -553,12 +584,21 @@ function EditorPanel({ collection, onPreview }: EditorPanelProps) {
   const [formData, setFormData] = useState<any>(null);
   const [isDirty, setIsDirty] = useState(false);
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (rawData && !isDirty) {
       setFormData(rawData);
     }
   }, [rawData, isDirty]);
+
+  useEffect(() => {
+    if (!activeFieldKey || !scrollRef.current) return;
+    const el = scrollRef.current.querySelector(`[data-field-key="${activeFieldKey}"]`);
+    if (el) {
+      setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 80);
+    }
+  }, [activeFieldKey]);
 
   const saveMutation = useMutation({
     mutationFn: async (data: any) => {
@@ -592,74 +632,90 @@ function EditorPanel({ collection, onPreview }: EditorPanelProps) {
   if (isLoading || !formData) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-6 h-6 border-3 border-[#0033a0] border-t-transparent rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-[#0033a0] border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0">
-        <div>
-          <h2 className="font-semibold text-gray-800 text-sm">{collection.label}</h2>
-          {isDirty && <span className="text-xs text-amber-600">Unsaved changes</span>}
+    <ActiveFieldContext.Provider value={activeFieldKey}>
+      <div className="flex flex-col h-full">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0">
+          <div>
+            <h2 className="font-semibold text-gray-800 text-sm">{collection.label}</h2>
+            {isDirty && <span className="text-xs text-amber-600">Unsaved changes</span>}
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              data-testid="btn-preview"
+              onClick={() => onPreview(collection.previewPath)}
+              className="flex items-center gap-1 text-xs px-3 py-1.5 text-gray-600 border border-gray-200 rounded hover:bg-gray-50"
+            >
+              <Eye className="w-3 h-3" /> Preview
+            </button>
+            <button
+              data-testid="btn-save"
+              disabled={!isDirty || saveStatus === "saving"}
+              onClick={() => saveMutation.mutate(formData)}
+              className={`flex items-center gap-1 text-xs px-3 py-1.5 rounded font-medium transition-colors ${
+                !isDirty
+                  ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                  : saveStatus === "saving"
+                  ? "bg-blue-100 text-blue-600 cursor-not-allowed"
+                  : saveStatus === "saved"
+                  ? "bg-green-100 text-green-700"
+                  : saveStatus === "error"
+                  ? "bg-red-100 text-red-700"
+                  : "bg-[#0033a0] text-white hover:bg-[#002280]"
+              }`}
+            >
+              {saveStatus === "saving" && <RefreshCw className="w-3 h-3 animate-spin" />}
+              {saveStatus === "saved" && <Check className="w-3 h-3" />}
+              {saveStatus === "error" && <AlertCircle className="w-3 h-3" />}
+              {saveStatus === "idle" && <Save className="w-3 h-3" />}
+              {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "Saved!" : saveStatus === "error" ? "Error" : "Save"}
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            data-testid="btn-preview"
-            onClick={() => onPreview(collection.previewPath)}
-            className="flex items-center gap-1 text-xs px-3 py-1.5 text-gray-600 border border-gray-200 rounded hover:bg-gray-50"
-          >
-            <Eye className="w-3 h-3" /> Preview
-          </button>
-          <button
-            data-testid="btn-save"
-            disabled={!isDirty || saveStatus === "saving"}
-            onClick={() => saveMutation.mutate(formData)}
-            className={`flex items-center gap-1 text-xs px-3 py-1.5 rounded font-medium transition-colors ${
-              !isDirty
-                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                : saveStatus === "saving"
-                ? "bg-blue-100 text-blue-600 cursor-not-allowed"
-                : saveStatus === "saved"
-                ? "bg-green-100 text-green-700"
-                : saveStatus === "error"
-                ? "bg-red-100 text-red-700"
-                : "bg-[#0033a0] text-white hover:bg-[#002280]"
-            }`}
-          >
-            {saveStatus === "saving" && <RefreshCw className="w-3 h-3 animate-spin" />}
-            {saveStatus === "saved" && <Check className="w-3 h-3" />}
-            {saveStatus === "error" && <AlertCircle className="w-3 h-3" />}
-            {saveStatus === "idle" && <Save className="w-3 h-3" />}
-            {saveStatus === "saving" ? "Saving..." : saveStatus === "saved" ? "Saved!" : saveStatus === "error" ? "Error" : "Save"}
-          </button>
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4">
+          {collection.fields.map(field => (
+            <FieldEditor
+              key={field.key}
+              field={field}
+              value={formData[field.key]}
+              onChange={v => handleFieldChange(field.key, v)}
+            />
+          ))}
         </div>
       </div>
-      <div className="flex-1 overflow-y-auto px-4 py-4">
-        {collection.fields.map(field => (
-          <FieldEditor
-            key={field.key}
-            field={field}
-            value={formData[field.key]}
-            onChange={v => handleFieldChange(field.key, v)}
-          />
-        ))}
-      </div>
-    </div>
+    </ActiveFieldContext.Provider>
   );
 }
 
-function ServiceEditorPanel({ slug, label, onPreview }: { slug: string; label: string; onPreview: (path: string) => void }) {
+function ServiceEditorPanel({ slug, label, onPreview, activeFieldKey }: {
+  slug: string;
+  label: string;
+  onPreview: (path: string) => void;
+  activeFieldKey: string | null;
+}) {
   const apiPath = `/api/content/services/${slug}`;
   const { data: rawData, isLoading } = useQuery<any>({ queryKey: [apiPath] });
   const [formData, setFormData] = useState<any>(null);
   const [isDirty, setIsDirty] = useState(false);
   const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (rawData && !isDirty) setFormData(rawData);
   }, [rawData, isDirty]);
+
+  useEffect(() => {
+    if (!activeFieldKey || !scrollRef.current) return;
+    const el = scrollRef.current.querySelector(`[data-field-key="${activeFieldKey}"]`);
+    if (el) {
+      setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "center" }), 80);
+    }
+  }, [activeFieldKey]);
 
   const saveMutation = useMutation({
     mutationFn: async (data: any) => {
@@ -668,8 +724,16 @@ function ServiceEditorPanel({ slug, label, onPreview }: { slug: string; label: s
       return res.json();
     },
     onMutate: () => setSaveStatus("saving"),
-    onSuccess: () => { setSaveStatus("saved"); setIsDirty(false); queryClient.invalidateQueries({ queryKey: [apiPath] }); setTimeout(() => setSaveStatus("idle"), 3000); },
-    onError: () => { setSaveStatus("error"); setTimeout(() => setSaveStatus("idle"), 3000); },
+    onSuccess: () => {
+      setSaveStatus("saved");
+      setIsDirty(false);
+      queryClient.invalidateQueries({ queryKey: [apiPath] });
+      setTimeout(() => setSaveStatus("idle"), 3000);
+    },
+    onError: () => {
+      setSaveStatus("error");
+      setTimeout(() => setSaveStatus("idle"), 3000);
+    },
   });
 
   if (isLoading || !formData) {
@@ -677,32 +741,34 @@ function ServiceEditorPanel({ slug, label, onPreview }: { slug: string; label: s
   }
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0">
-        <div>
-          <h2 className="font-semibold text-gray-800 text-sm">{label}</h2>
-          {isDirty && <span className="text-xs text-amber-600">Unsaved changes</span>}
+    <ActiveFieldContext.Provider value={activeFieldKey}>
+      <div className="flex flex-col h-full">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0">
+          <div>
+            <h2 className="font-semibold text-gray-800 text-sm">{label}</h2>
+            {isDirty && <span className="text-xs text-amber-600">Unsaved changes</span>}
+          </div>
+          <div className="flex items-center gap-2">
+            <button data-testid="btn-preview-service" onClick={() => onPreview(`/services/${slug}`)} className="flex items-center gap-1 text-xs px-3 py-1.5 text-gray-600 border border-gray-200 rounded hover:bg-gray-50">
+              <Eye className="w-3 h-3" /> Preview
+            </button>
+            <button
+              data-testid="btn-save-service"
+              disabled={!isDirty || saveStatus === "saving"}
+              onClick={() => saveMutation.mutate(formData)}
+              className={`flex items-center gap-1 text-xs px-3 py-1.5 rounded font-medium transition-colors ${!isDirty ? "bg-gray-100 text-gray-400 cursor-not-allowed" : saveStatus === "saving" ? "bg-blue-100 text-blue-600 cursor-not-allowed" : saveStatus === "saved" ? "bg-green-100 text-green-700" : "bg-[#0033a0] text-white hover:bg-[#002280]"}`}
+            >
+              {saveStatus === "saving" ? <><RefreshCw className="w-3 h-3 animate-spin" /> Saving...</> : saveStatus === "saved" ? <><Check className="w-3 h-3" /> Saved!</> : <><Save className="w-3 h-3" /> Save</>}
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button data-testid="btn-preview-service" onClick={() => onPreview(`/services/${slug}`)} className="flex items-center gap-1 text-xs px-3 py-1.5 text-gray-600 border border-gray-200 rounded hover:bg-gray-50">
-            <Eye className="w-3 h-3" /> Preview
-          </button>
-          <button
-            data-testid="btn-save-service"
-            disabled={!isDirty || saveStatus === "saving"}
-            onClick={() => saveMutation.mutate(formData)}
-            className={`flex items-center gap-1 text-xs px-3 py-1.5 rounded font-medium transition-colors ${!isDirty ? "bg-gray-100 text-gray-400 cursor-not-allowed" : saveStatus === "saving" ? "bg-blue-100 text-blue-600 cursor-not-allowed" : saveStatus === "saved" ? "bg-green-100 text-green-700" : "bg-[#0033a0] text-white hover:bg-[#002280]"}`}
-          >
-            {saveStatus === "saving" ? <><RefreshCw className="w-3 h-3 animate-spin" /> Saving...</> : saveStatus === "saved" ? <><Check className="w-3 h-3" /> Saved!</> : <><Save className="w-3 h-3" /> Save</>}
-          </button>
+        <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4">
+          {SERVICE_FIELDS.map(field => (
+            <FieldEditor key={field.key} field={field} value={formData[field.key]} onChange={v => { setFormData((p: any) => ({ ...p, [field.key]: v })); setIsDirty(true); setSaveStatus("idle"); }} />
+          ))}
         </div>
       </div>
-      <div className="flex-1 overflow-y-auto px-4 py-4">
-        {SERVICE_FIELDS.map(field => (
-          <FieldEditor key={field.key} field={field} value={formData[field.key]} onChange={v => { setFormData((p: any) => ({ ...p, [field.key]: v })); setIsDirty(true); setSaveStatus("idle"); }} />
-        ))}
-      </div>
-    </div>
+    </ActiveFieldContext.Provider>
   );
 }
 
@@ -721,20 +787,74 @@ export default function AdminCMS() {
   const [iframeKey, setIframeKey] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [servicesExpanded, setServicesExpanded] = useState(false);
+  const [activeFieldKey, setActiveFieldKey] = useState<string | null>(null);
+  const [clickToEditMode, setClickToEditMode] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const serviceNavItems: NavItem[] = SERVICE_SLUGS.map(s => ({
+    id: s.slug,
+    type: "service" as const,
+    label: s.label,
+    slug: s.slug,
+    previewPath: `/services/${s.slug}`,
+  }));
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (!event.data || event.data.type !== "tina-field-selected") return;
+      const fieldId: string = event.data.fieldId;
+      if (!fieldId) return;
+
+      const parts = fieldId.split("---");
+      if (parts.length < 2) return;
+      const pathStr = parts[1];
+      const segments = pathStr.split(".");
+      const root = segments[0];
+      const fieldKey = segments[1] || null;
+
+      const collectionId = TINA_ROOT_TO_COLLECTION[root];
+
+      if (collectionId) {
+        const col = COLLECTIONS.find(c => c.id === collectionId);
+        if (col) {
+          setSelectedItem(prev => {
+            if (prev?.id !== collectionId) {
+              return { id: collectionId, type: "collection", label: col.label, collectionId, previewPath: col.previewPath };
+            }
+            return prev;
+          });
+          setActiveFieldKey(fieldKey);
+        }
+      } else if (root === "serviceDetail") {
+        const slug = previewUrl.replace("/services/", "").split("?")[0].split("#")[0];
+        const serviceItem = serviceNavItems.find(s => s.slug === slug);
+        if (serviceItem) {
+          setSelectedItem(prev => prev?.id !== serviceItem.id ? serviceItem : prev);
+          setActiveFieldKey(fieldKey);
+          setServicesExpanded(true);
+        }
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, [previewUrl, serviceNavItems]);
 
   const handlePreview = useCallback((path: string) => {
     setPreviewUrl(path);
     setIframeKey(k => k + 1);
+    setActiveFieldKey(null);
   }, []);
 
   const handleSelectItem = useCallback((item: NavItem) => {
     setSelectedItem(item);
+    setActiveFieldKey(null);
     handlePreview(item.previewPath);
   }, [handlePreview]);
 
   const refreshPreview = useCallback(() => {
     setIframeKey(k => k + 1);
+    setActiveFieldKey(null);
   }, []);
 
   const navItems: NavItem[] = [
@@ -747,14 +867,6 @@ export default function AdminCMS() {
     })),
   ];
 
-  const serviceNavItems: NavItem[] = SERVICE_SLUGS.map(s => ({
-    id: s.slug,
-    type: "service" as const,
-    label: s.label,
-    slug: s.slug,
-    previewPath: `/services/${s.slug}`,
-  }));
-
   const collection = selectedItem?.type === "collection"
     ? COLLECTIONS.find(c => c.id === selectedItem.collectionId)
     : null;
@@ -764,7 +876,7 @@ export default function AdminCMS() {
       <div className={`${sidebarOpen ? "w-64" : "w-0"} flex-shrink-0 bg-[#1a1a2e] text-white flex flex-col transition-all duration-200 overflow-hidden`}>
         <div className="px-4 py-4 border-b border-white/10 flex-shrink-0">
           <div className="flex items-center gap-2">
-            <img src="/images/dsrc-logo.png" alt="DSRC" className="h-7 brightness-0 invert" onError={e => { (e.target as HTMLImageElement).style.display='none'; }} />
+            <img src="/images/dsrc-logo.png" alt="DSRC" className="h-7 brightness-0 invert" onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
             <div>
               <div className="text-sm font-bold">Content Manager</div>
               <div className="text-xs text-white/50">DSRC CMS</div>
@@ -835,7 +947,20 @@ export default function AdminCMS() {
           <span className="text-sm font-semibold text-gray-700">
             {selectedItem ? selectedItem.label : "Select a page to edit"}
           </span>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex items-center gap-3">
+            <button
+              data-testid="btn-click-to-edit"
+              onClick={() => setClickToEditMode(!clickToEditMode)}
+              title={clickToEditMode ? "Click-to-edit ON — click any section in the preview to jump to its field" : "Click-to-edit OFF"}
+              className={`flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded border transition-colors ${
+                clickToEditMode
+                  ? "bg-[#0033a0]/10 border-[#0033a0]/30 text-[#0033a0] font-medium"
+                  : "bg-gray-50 border-gray-200 text-gray-500"
+              }`}
+            >
+              <MousePointer className="w-3 h-3" />
+              {clickToEditMode ? "Click-to-edit ON" : "Click-to-edit OFF"}
+            </button>
             <span className="text-xs text-gray-400">Preview:</span>
             <code className="text-xs bg-gray-100 px-2 py-1 rounded text-gray-600">{previewUrl}</code>
             <button data-testid="btn-refresh-preview" onClick={refreshPreview} className="p-1.5 rounded hover:bg-gray-100 text-gray-500" title="Refresh preview">
@@ -848,9 +973,18 @@ export default function AdminCMS() {
           {selectedItem && (
             <div className="w-[380px] flex-shrink-0 border-r border-gray-200 bg-white overflow-hidden flex flex-col">
               {selectedItem.type === "collection" && collection ? (
-                <EditorPanel collection={collection} onPreview={handlePreview} />
+                <EditorPanel
+                  collection={collection}
+                  onPreview={handlePreview}
+                  activeFieldKey={activeFieldKey}
+                />
               ) : selectedItem.type === "service" && selectedItem.slug ? (
-                <ServiceEditorPanel slug={selectedItem.slug} label={selectedItem.label} onPreview={handlePreview} />
+                <ServiceEditorPanel
+                  slug={selectedItem.slug}
+                  label={selectedItem.label}
+                  onPreview={handlePreview}
+                  activeFieldKey={activeFieldKey}
+                />
               ) : null}
             </div>
           )}
@@ -873,8 +1007,13 @@ export default function AdminCMS() {
                 <div className="w-3 h-3 rounded-full bg-yellow-400" />
                 <div className="w-3 h-3 rounded-full bg-green-400" />
                 <div className="flex-1 mx-3 bg-gray-100 rounded px-3 py-1 text-xs text-gray-500 font-mono truncate">
-                  {typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.hostname}${previewUrl}` : previewUrl}
+                  {typeof window !== "undefined" ? `${window.location.protocol}//${window.location.hostname}${previewUrl}` : previewUrl}
                 </div>
+                {clickToEditMode && (
+                  <span className="text-xs text-[#0033a0] font-medium flex items-center gap-1 flex-shrink-0">
+                    <MousePointer className="w-3 h-3" /> Click any section to edit
+                  </span>
+                )}
               </div>
               <div className="flex-1 relative">
                 <iframe

@@ -20,11 +20,16 @@ export default defineConfig({
       : []),
   ],
   resolve: {
+    dedupe: ["react", "react-dom"],
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      "@content": path.resolve(import.meta.dirname, "content"),
     },
+  },
+  optimizeDeps: {
+    exclude: ["tinacms"],
   },
   root: path.resolve(import.meta.dirname, "client"),
   build: {
@@ -34,6 +39,11 @@ export default defineConfig({
   server: {
     fs: {
       strict: true,
+      allow: [
+        path.resolve(import.meta.dirname, "client"),
+        path.resolve(import.meta.dirname, "content"),
+        path.resolve(import.meta.dirname, "node_modules"),
+      ],
       deny: ["**/.*"],
     },
   },

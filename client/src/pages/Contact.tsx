@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { useTina, tinaField } from "@/lib/tina-react";
 import { useHead } from "@/hooks/use-head";
 import { usePageContent } from "@/lib/content";
+import { CONTACT_QUERY } from "@/lib/tinaQueries";
 import HeroSection from "@/components/sections/HeroSection";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,11 +19,21 @@ import { useToast } from "@/hooks/use-toast";
 import { MapPin, Phone, Send } from "lucide-react";
 
 export default function Contact() {
-  const { data: page, isLoading } = usePageContent("contact");
+  const { data: apiData, isLoading } = usePageContent("contact");
   const [activeTab, setActiveTab] = useState("global");
   const [formData, setFormData] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const { toast } = useToast();
+
+  const tinaData = useMemo(() => ({ contact: apiData }), [apiData]);
+  const { data: tina } = useTina({
+    query: CONTACT_QUERY,
+    variables: { relativePath: "contact.json" },
+    data: tinaData,
+  });
+
+  const page = apiData;
+  const tinaRef = tina?.contact;
 
   useHead({
     title: page?.seo?.title || "Contact DSRC",
@@ -53,17 +65,24 @@ export default function Contact() {
 
   return (
     <>
-      <HeroSection
-        title={page.hero.title}
-        subtitle={page.hero.subtitle}
-        variant="dark"
-        bgImage={page.hero.bgImage}
-        breadcrumbs={page.hero.breadcrumbs}
-      />
+      <div data-tina-field={tinaRef ? tinaField(tinaRef, "hero") : undefined}>
+        <HeroSection
+          title={page.hero.title}
+          subtitle={page.hero.subtitle}
+          variant="dark"
+          bgImage={page.hero.bgImage}
+          breadcrumbs={page.hero.breadcrumbs}
+        />
+      </div>
 
       <section className="py-12 bg-[#f0f4fa]">
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-xl font-bold text-[#0033a0] mb-2">{page.intro.heading}</h2>
+          <h2
+            data-tina-field={tinaRef ? tinaField(tinaRef, "intro") : undefined}
+            className="text-xl font-bold text-[#0033a0] mb-2"
+          >
+            {page.intro.heading}
+          </h2>
           {page.intro.paragraphs.map((p: string, idx: number) => (
             <p key={idx} className="text-[14px] text-gray-500 leading-[1.8]">{p}</p>
           ))}
@@ -202,14 +221,22 @@ export default function Contact() {
         </div>
       </section>
 
-      <section className="py-12 bg-[#f5f5f5]">
+      <section
+        data-tina-field={tinaRef ? tinaField(tinaRef, "offices") : undefined}
+        className="py-12 bg-[#f5f5f5]"
+      >
         <div className="max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold text-[#0033a0] mb-8">OFFICE LOCATIONS</h2>
           <p className="text-[13px] text-gray-500 mb-6">{page.officeHours}</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {page.offices.map((office: any, idx: number) => (
               <div key={idx} data-testid={`office-${idx}`} className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-                <h3 className="text-[13px] font-bold text-[#0033a0] mb-1">{office.title}</h3>
+                <h3
+                  data-tina-field={tinaField(office, "title")}
+                  className="text-[13px] font-bold text-[#0033a0] mb-1"
+                >
+                  {office.title}
+                </h3>
                 <p className="text-[12px] text-gray-500 mb-3">{office.company}</p>
                 <div className="flex items-start gap-2 text-[13px] text-gray-600 mb-2">
                   <MapPin className="w-3.5 h-3.5 text-[#0033a0] shrink-0 mt-0.5" />
